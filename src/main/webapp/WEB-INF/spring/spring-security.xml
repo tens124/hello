@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 스프링 시큐리티는 웹 애플리케이션의 보안을 책임지는 Spring의 강력한 서브 프레임워크 -->
+
+<!-- 바깥의 빈은 서브프레임워크 활성화. 안쪽의 빈이 해당 서브프레임워크의 요소들을 가져옴 -->
+<beans:beans
+	xmlns="http://www.springframework.org/schema/security"
+	xmlns:beans="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+						http://www.springframework.org/schema/beans/spring-beans.xsd
+						http://www.springframework.org/schema/security
+						http://www.springframework.org/schema/security/spring-security.xsd">
+						
+<!-- 다만 이 빈만으로는 비밀번호를 평문에서 암호문으로 변환하는 정도밖에는 사용할 수 없다. 인증, 권한 부여 등의 기능 또한 존재 -->
+	<beans:bean id="bcryptPasswordEncoder"
+		class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder" />
+</beans:beans>

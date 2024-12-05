@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 공용 설정 파일. 프로젝트 전체적으로 통용되는, 이를테면 DB와의 소통 같은 내용이 저장되어 있음. 애플리케이션의 전반적인 설정 담당 -->
+<!-- 모든 계층에서 사용되는 설정이라면 본 파일에 두고, 특정 모듈에서만 사용되는 설정이라면 별도의 설정을 두는 것이 유리 -->
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mybatis-spring="http://mybatis.org/schema/mybatis-spring"
+	xsi:schemaLocation="http://mybatis.org/schema/mybatis-spring http://mybatis.org/schema/mybatis-spring-1.2.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
+
+	<!-- 데이터베이스 커넥션 풀 라이브러리 -->
+	<!-- DB 접근 시마다 새로운 연결을 생성하고 종료하는 것은 비용이 큼. HikariCP는 미리 일정 수의 데이터베이스 연결을 만들어 풀에 저장해 두고, 필요할 때 연결을 꺼내 사용하도록 관리 -->
+	<bean id="hikariConfig" class="com.zaxxer.hikari.HikariConfig">
+		<property name="driverClassName"
+			value="oracle.jdbc.driver.OracleDriver"></property>
+		<property name="jdbcUrl" 
+			value="jdbc:oracle:thin:@localhost:1521:xe"></property>
+		<property name="username" value="boss"></property>
+		<property name="password" value="boss123"></property>
+	</bean>
+
+	<!-- HikariCP configuration -->
+	<bean id="dataSource" class="com.zaxxer.hikari.HikariDataSource"
+		destroy-method="close">
+		<constructor-arg ref="hikariConfig" />
+	</bean>
+	
+	
+	
+
+	<!-- 스프링으로 oracle db 연결 -->
+	<bean id="sqlSessionFactory"
+		class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="dataSource"></property>
+		<property name="configLocation"	value="classpath:util/configuration.xml" />
+		<property name="mapperLocations" value="classpath:sql/*.xml" />
+	</bean>
+
+	<!-- navermail설정. mailsender 빈을 등록. 이를 통해 메일을 전송하는 메일센더 인터페이스를 간편하게 사용 가능. 구현체까지 지정하여 주입 -->
+	<bean id="mailSender"
+		class="org.springframework.mail.javamail.JavaMailSenderImpl">
+		<property name="host" value="smtp.naver.com" /> <!-- 메이서버 호스트 -->
+		<property name="port" value="587" /> <!-- 메이서버 포트번호 -->
+		<property name="username" value="holol124@naver.com" /> <!-- 자신의 이메일 아이디 -->
+		<property name="password" value="zxzx33" /> <!-- 자신의 비밀번호 -->
+		<!-- 보안연결 SSL과 관련된 설정 -->
+		<property name="javaMailProperties">
+			<props>
+				<prop key="mail.smtp.auth">true</prop>
+				<prop key="mail.smtp.starttls.enable">true</prop>
+				<prop key="mail.smtps.checkserveridentity">true</prop>
+				<prop key="mail.smtps.ssl.trust">*</prop>
+				<prop key="mail.debug">true</prop>
+				<prop key="mail.smtp.socketFactory.class">javax.net.ssl.SSLSocketFactory</prop>
+			</props>
+		</property>
+	</bean>
+
+	<!-- Mybatis에서 dao클래스로 처리 할때는 필요하지만, mapper interface로 처리 할때는 필요 없음. 인터페이스를 통한 통신으로 결합도를 낮추는 쪽이 유리 -->
+	<!-- SqlSessionTemplate 빈은 MyBatis에서 SQL 세션을 관리하는 중요한 객체. 다만 MyBatis mapper 인터페이스를 사용한다면 
+	스프링이 자동으로 매퍼 인터페이스를 스캔하고, 내부의 구현클래스들을 자동으로 구현 및 빈으로 등록해주기 때문에 해당 객체를 생성하지 않아도 된다   -->
+	<!-- SqlSessionTemplate 객체 생성 -->
+	<!-- <bean id="session" class="org.mybatis.spring.SqlSessionTemplate"> <constructor-arg 
+		index="0" ref="sqlSessionFactory" /> </bean> -->
+
+
+	<!-- mapper interface의 package설정. 해당 패키지 내부에는 dao 인터페이스들이 저장되어 있어, 스프링이 자동으로 스캔 후 해당 인터페이스의 구현클래스들을 자동으로 컨테이너에 등록 -->
+	<!-- MyBatis가 SQL 쿼리와 매핑되는 메서드를 자동으로 구현해줌. 
+	@Mapper 어노테이션이 붙은 인터페이스를 스캔하면 MyBatis가 자동으로 이 인터페이스를 구현하게 하고, 이 메서드들에 대응하는 SQL 쿼리를 매핑 -->
+	<!-- sql문이 담긴 파일에는 <mapper namespace="boss.dao.BucketDao">와 같은 형태로 각 Dao 인터페이스에 담긴 sql문들이 서술되어 있음. 스프링은 해당하는 sql문들을 미리 기록된 이름의 메소드로 제작해 줌 -->
+	<mybatis-spring:scan base-package="boss.dao" />
+	
+
+
+</beans>
