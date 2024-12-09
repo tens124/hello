@@ -552,7 +552,8 @@
 	<div id="main">
 		<div class="inner">
 			<header align="center">
-
+	
+				<!-- 안녕! -->
 				<!----------- 슬라이드 부트스트랩 시작-------------->
 				<div class="container"></div>
 				<div id="demo" class="carousel slide" data-ride="carousel">
