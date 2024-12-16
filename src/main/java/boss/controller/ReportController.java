@@ -25,17 +25,17 @@ public class ReportController {
 	@RequestMapping("reportWriteForm.do")
 	public String reportWriteForm(String pid, Report report, Model model) {
 		System.out.println("reportWriteForm");
-		String reporttype = report.getReporttype();
-		String reportnum = "" + report.getReportnum();
+		String reporttype = report.getReporttype();	//신고 타입을 저장
+		String reportnum = "" + report.getReportnum();	//신고 번호를 문자형으로 변환
 
 		System.out.println("type : " + reporttype);
 		System.out.println("reportnum : " + reportnum);
 
-		if (reporttype.equals("review")) {
+		if (reporttype.equals("review")) {	//리뷰 게시판에서 온 신고라면? 신고 내용과 함께 상품번호를 같이 저장
 			model.addAttribute("Report", report);
 			model.addAttribute("pid", pid);
 
-		} else if (reporttype.equals("freeBoard")) {
+		} else if (reporttype.equals("freeBoard")) {	//자유게시판에서 온 신고라면? 리포트 객체만 저장
 			model.addAttribute("Report", report);
 		}
 		return "report/reportWriteForm";
