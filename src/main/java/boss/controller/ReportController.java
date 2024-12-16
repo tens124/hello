@@ -47,11 +47,14 @@ public class ReportController {
 			@RequestParam(value = "image1", required = false) MultipartFile mfile) throws Exception {
 		System.out.println("reportWrite");
 		int result = 0;
-		String realFileName = mfile.getOriginalFilename();
-		int size = (int) mfile.getSize();
+		String realFileName = mfile.getOriginalFilename();	//파일 이름 저장
+		int size = (int) mfile.getSize();	//파일 용량 저장
 		if (realFileName != null && realFileName != "") { // 파일이 있는경우
-			String extension = realFileName.substring(realFileName.lastIndexOf("."), realFileName.length());
+			String extension = realFileName.substring(realFileName.lastIndexOf("."), realFileName.length());	//.을 포함한 확장자만 추출
 			System.out.println("파일이있음. : " + extension);
+			
+			
+			//잘못된 이미지 사용으로 인해 신고글 작성이 불가
 			if (size > 5000000) { // 이미지의 용량이 약 4MB를 초과한 경우.
 				System.out.println("용량초과");
 				model.addAttribute("result", 2);
@@ -64,17 +67,20 @@ public class ReportController {
 				model.addAttribute("msg", "올바른 파일 형식이 아닙니다.");
 				return "report/reportWriteResult";
 			}
-			UUID uuid = UUID.randomUUID();
-			String newFileName = uuid + extension;
-			report.setReportimage(newFileName);
+			
+			
+			
+			UUID uuid = UUID.randomUUID();	//해당 코드는 128비트 크기의 새로운 이름을 생성해준다. 따라서 해당 결과값과 원본 파일 이름을 조합하면 중복 방지에 매우 효율적
+			String newFileName = uuid + extension;	//새로운 파일 이름을 생성
+			report.setReportimage(newFileName);		//세터 메소드를 이용해 새로운 파일 이름을 적용
 			//String path = "C:\\gitBoss\\boss\\src\\main\\webapp\\uploadReport";
-			String path = request.getRealPath("images");
-			mfile.transferTo(new File(path + "/" + newFileName));
+			String path = request.getRealPath("images");	//파일의 경로를 추적하는 코드. 구버전이니 개선할 수 있을 것
+			mfile.transferTo(new File(path + "/" + newFileName));	//파일 업로드. 업로드된 파일을 지정한 경로(path + 파일명)로 실제로 저장
 		}
 
-		result = rs.insert(report);
+		result = rs.insert(report);	//insert문을 호출. 성공 시 1 반환
 		if (result == 1) { // 글 작성 true
-			if (report.getReporttype().equals("review")) { // 리뷰에 글을썼을경우
+			if (report.getReporttype().equals("review")) { // 리뷰에 글을썼을경우. report DTO의 reporttype 프로퍼티값을 비교
 				System.out.println("리뷰 글작성 성공");
 				model.addAttribute("msg", "신고가 접수되었습니다.");
 				model.addAttribute("resultType", "review_true");
