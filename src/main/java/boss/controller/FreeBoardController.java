@@ -46,11 +46,12 @@ public class FreeBoardController {
 		return "freeboard/freeBoardInsertform";
 	}
 
-	// 자유게시판 글등록 ok 
+	// 자유게시판 글등록 ok. 글 등록 폼에서 '등록' 버튼을 누르면
 	@RequestMapping("freeBoardInsertok.do")
-	public String freeBoardInsertok(@ModelAttribute FreeBoard board, 
-			                        @RequestParam("freeImage") MultipartFile mf,
-			                        HttpServletRequest request,
+	public String freeBoardInsertok(@ModelAttribute FreeBoard board, 	//@ModelAttribute은 html 폼에서 전달된 데이터를 DTO 객체에 자동으로 바인딩 할 때 사용. 필수는 아님
+			                        @RequestParam("freeImage") MultipartFile mf,	//freeImage라는 데이터를 추가로 바인딩
+			                        HttpServletRequest request,		//HTTP 요청을 처리하는 객체. 클라이언트가 서버에 보낸 HTTP 요청에 대한 정보를 제공	
+			                        								//필수는 아님. 특별한 요구 사항(URL 정보나 헤더 정보, 세션 관리 등)이 있을 때만 사용하는 것이 일반적
 			                         Model model) throws Exception {
 		// @ModelAttribute 을 이용해서 form에서 넘어온 값을 dto객체로 값을 받고
 		// name값이 일치되면 set메소드로 값이 저장됨
@@ -62,7 +63,7 @@ public class FreeBoardController {
 
 		//배포전에 업로드한 이미지는 aws의 realpath에 직접 업로드를 시켜야함. (내폴더에만 있어서)
 		//배포후에 업로드한 이미지는 aws에 업로드되어있어서 직접 업로드 하지않아도됨.(주석처리한경로는 절대경로라서 배포후에는 불러올수없음)
-		String path = request.getRealPath("images");
+		String path = request.getRealPath("images");	//파일 실제 경로를 불러오는 데 사용
 		//String path = "C:\\Users\\haham\\Downloads\\프로젝트\\상단이미지\\bossproject\\boss\\src\\main\\webapp\\images";
 		int result=0;
 		
@@ -118,33 +119,38 @@ public class FreeBoardController {
 
 	// 자유게시판 목록 
 	@RequestMapping("freeBoardList.do")
-	public String freeBoardList(String page, FreeBoard board, Model model) {
+	public String freeBoardList(String page, FreeBoard board, Model model) {	
+	//page는 출력할 페이지 번호를 의미. 뷰에서 이동 가능
 
 		final int rowPerPage = 10;	// 화면에 출력할 데이터 갯수
-		if (page == null || page.equals("")) {
+		if (page == null || page.equals("")) {	//page가 빈 값일 경우, 즉 초기에 게시판 진입 시 1페이지로 접속되게 설정
 			page = "1";
 		}
-		int currentPage = Integer.parseInt(page); // 현재 페이지 번호
+		int currentPage = Integer.parseInt(page); // 현재 페이지 번호. String 값을 int값으로 변환
 		
 		// 총 데이터 갯수 (검색기능 추가)
-		int total = fservice.freeBoardListCount(board); 
+		int total = fservice.freeBoardListCount(board); 	//해당 검색어로 검색했을 때 일치하는 값을 가진 행의 갯수를 조사
 		
 		//startRow: 한 페이지 화면 출력 시작번호, endRow: 한 페이지 화면출력 끝번호
-		int startRow = (currentPage - 1) * rowPerPage + 1; //1,11,21..
-		int endRow = startRow + rowPerPage - 1; //10,20,30,...
+		//한 페이지에서의 페이지 갯수는 rowPerPage, 10개. 즉, 1~10/11~20/21~30 .... 을 표시하도록 해야 함
+		int startRow = (currentPage - 1) * rowPerPage + 1; //1,11,21..	1페이지라면 1/5페이지라면 41/7페이지라면 61 ...
+		int endRow = startRow + rowPerPage - 1; //10,20,30,...	첫 글 번호가 1이라면 10/41이라면 50/61이라면 70 ...
 		
-		//PagingPgmf : paging dto 
-		PagingPgmHyesun pp = new PagingPgmHyesun(total, rowPerPage, currentPage);
+		//PagingPgmf : paging dto. 해당 DTO는 모델이 아닌 common 디렉토리에 존재 
+		PagingPgmHyesun pp = new PagingPgmHyesun(total, rowPerPage, currentPage);	//두 개의 DTO 차이점을 알아보자
+		
 		board.setStartRow(startRow);
 		board.setEndRow(endRow);
+		//세터를 통한 시작번호/끝번호 설정
 
-		int no = total - startRow + 1;		// 화면 출력 번호
+		int no = total - startRow + 1;		// 화면 출력 번호. 게시물 갯수 - 시작번호 + 1
 		
-		List<FreeBoard> list = fservice.freeBoardList(board);
+		List<FreeBoard> list = fservice.freeBoardList(board);	//게시물 목록을 가져와 저장
 		
 		model.addAttribute("list", list);
 		model.addAttribute("no", no);
 		model.addAttribute("pp", pp);
+		
 		// 검색
 		model.addAttribute("search", board.getSearch());
 		model.addAttribute("keyword", board.getKeyword());

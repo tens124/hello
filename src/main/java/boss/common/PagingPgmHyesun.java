@@ -1,6 +1,6 @@
 package boss.common;
 
-public class PagingPgmHyesun {
+public class PagingPgmHyesun {		//추가적인 생성자를 위함이다만... 
 
 	private int total;				// 데이터 갯수
 	private int rowPerPage;			// 화면에 출력할 데이터 갯수
