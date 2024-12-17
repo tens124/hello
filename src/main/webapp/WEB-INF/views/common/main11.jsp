@@ -16,11 +16,12 @@
 
          <div>
          
-        	<c:if test="${sessionId eq null}">
+        	<c:if test="${sessionId eq null}">	<!-- 세션아이디가 존재하지 않는다면 -->
 			<a href="NaverLogin.do">로그인</a>
 			</c:if>
-			<c:if test="${sessionId ne null && sessionId eq 'boss'}">
+			<c:if test="${sessionId ne null && sessionId eq 'boss'}">	<!-- 세션아이디가 boss라면 -->
 				${sessionId }님 환영합니다.
+				<p>sessionId 값: ${sessionScope.sessionId}</p>
 				<a href="Logout.do" onclick="alert('로그아웃')"><br>로그아웃</a>
 				<a href="productInsertForm.do" onclick="alert('상품등록')"><br>상품등록</a>
 				<input type="button" value="관리자페이지"

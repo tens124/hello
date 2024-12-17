@@ -36,7 +36,7 @@
 
 		<!--2.관리자페이지  -->
 		<c:if
-			test="${!empty sessionScope.member && sessionScope.member.mEmail eq 'master'}">
+			test="${!empty sessionScope.member && sessionScope.member.mEmail eq 'boss'}">
 			<a href="Logout.do" onclick="alert('로그아웃')"><img
 				src="./images/logout.png" style="text-decoration: none"></a>
 			<a href="mypage.do"><img src="./images/my.png"
@@ -56,7 +56,7 @@
 
 		<!-- 3.회원페이지 -->
 		<c:if
-			test="${!empty sessionScope.member && sessionScope.member.mEmail ne 'master'}">
+			test="${!empty sessionScope.member && sessionScope.member.mEmail ne 'boss'}">
 			<a href="Logout.do" onclick="alert('로그아웃')"><img
 				src="./images/logout.png" style="text-decoration: none"></a>
 			<a href="mypage.do"><img src="./images/my.png"

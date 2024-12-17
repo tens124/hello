@@ -14,8 +14,6 @@
 	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
 	템플릿 안내사항
 -->
-
-
 <html>
 <head>
 <title>Bo$$ Mall</title>
@@ -76,14 +74,14 @@
 <!-- 검색창에 적용될 함수 -->
 <script>
 	function enterkey() {
-		var s = document.getElementById("search").value;	//검색창의 내용을 s에 저장
+		var s = document.getElementById("search").value; //검색창의 내용을 s에 저장
 		if (window.event.keyCode == 13) {
 			// 엔터키가 눌렸을 때
 			if (s == "") {
 				alert("검색어를 입력해주세요");
-				return false;	//alert창이 꺼지고, 아무것도 하지 않음
+				return false; //alert창이 꺼지고, 아무것도 하지 않음
 			}
-			location.href = "allSearch.do?keyword=" + s;	//요청을 전송. allSearch.do 요청에 keyword값을 태워 보냄
+			location.href = "allSearch.do?keyword=" + s; //요청을 전송. allSearch.do 요청에 keyword값을 태워 보냄
 		}
 	}
 </script>
@@ -227,34 +225,16 @@
 				<!-- 쇼핑몰 로고 & 상단 아이콘 불러오기 -->
 				<%@include file="header.jsp"%>
 
-				<!--1. 회원 or 비회원 페이지. 현재는 빠져있는듯? -->
-				<c:if
-					test="${!empty sessionScope.member && member.mEmail ne 'master' || empty sessionScope.member}">
-					<div class="category-link" align="center">		<!-- 상단 카테고리 목록 -->
-						<a href="category.do?newCid=코트"
-							style="font-size: 20px; font-weight: bold; margin-right: 10px; text-decoration: none;">OUTER</a>
-						<a href="category.do?newCid=니트"
-							style="font-size: 20px; font-weight: bold; margin-right: 10px; text-decoration: none">KNIT</a>
-						<a href="category.do?newCid=상의"
-							style="font-size: 20px; font-weight: bold; margin-right: 10px; text-decoration: none">TOP</a>
-						<a href="category.do?newCid=하의"
-							style="font-size: 20px; font-weight: bold; margin-right: 10px; text-decoration: none">BOTTOM</a>
-						<a href="category.do?newCid=셔츠"
-							style="font-size: 20px; font-weight: bold; margin-right: 10px; text-decoration: none">SHIRT</a>
-						<a href="category.do?newCid=신발"
-							style="font-size: 20px; font-weight: bold; margin-right: 10px; text-decoration: none">SHOES</a>
-						<a href="category.do?newCid=ACC"
-							style="font-size: 20px; font-weight: bold; margin-right: 10px; text-decoration: none">ACC</a>
-					</div>
 
-					<br>
 
-					<!---------------------- Nav --------------------->
-					<nav>
-						<ul>
-							<li><a href="#menu">Menu</a></li>
-						</ul>
-					</nav>
+				<br>
+
+				<!---------------------- Nav --------------------->
+				<nav>
+					<ul>
+						<li><a href="#menu">Menu</a></li>
+					</ul>
+				</nav>
 			</div>
 		</header>
 		<!-- Menu -->
@@ -275,6 +255,29 @@
 		<div id="main">
 			<div class="inner">
 				<header align="center">
+
+					<div class="category-link" align="center">
+						<!-- 상단 카테고리 목록 -->
+						<a href="category.do?newCid=코트"
+							style="font-size: 20px; font-weight: bold; margin-right: 10px; text-decoration: none;">OUTER</a>
+						<a href="category.do?newCid=니트"
+							style="font-size: 20px; font-weight: bold; margin-right: 10px; text-decoration: none">KNIT</a>
+						<a href="category.do?newCid=상의"
+							style="font-size: 20px; font-weight: bold; margin-right: 10px; text-decoration: none">TOP</a>
+						<a href="category.do?newCid=하의"
+							style="font-size: 20px; font-weight: bold; margin-right: 10px; text-decoration: none">BOTTOM</a>
+						<a href="category.do?newCid=셔츠"
+							style="font-size: 20px; font-weight: bold; margin-right: 10px; text-decoration: none">SHIRT</a>
+						<a href="category.do?newCid=신발"
+							style="font-size: 20px; font-weight: bold; margin-right: 10px; text-decoration: none">SHOES</a>
+						<a href="category.do?newCid=ACC"
+							style="font-size: 20px; font-weight: bold; margin-right: 10px; text-decoration: none">ACC</a>
+					</div>
+					<div align="center" width="100px" height="100px">
+						<!-- 현재 나타나지 않고 있음! -->
+						<input type="text" maxlength="50" placeholder="검색어를 입력하세요."
+							id="search" onkeyup="enterkey()"><br> <br>
+					</div>
 
 					<!-- 					<h1> -->
 					<!-- 						<b>시선이 교차하는 순간</b> -->
@@ -492,35 +495,7 @@
 				</section>
 			</div>
 		</div>
-		</c:if>
 
-
-
-
-		<!--2.관리자페이지  -->
-		<c:if test="${!empty sessionScope.member && member.mEmail eq 'master'}">
-			<div class="category-link" align="center">
-				<a href="category.do?newCid=코트"
-					style="font-size: 20px; font-weight: bold; margin-right: 10px; text-decoration: none">OUTER</a>
-				<a href="category.do?newCid=코트"
-					style="font-size: 20px; font-weight: bold; margin-right: 10px; text-decoration: none">KNIT</a>
-				<a href="category.do?newCid=상의"
-					style="font-size: 20px; font-weight: bold; margin-right: 10px; text-decoration: none">TOP</a>
-				<a href="category.do?newCid=하의"
-					style="font-size: 20px; font-weight: bold; margin-right: 10px; text-decoration: none">BOTTOM</a>
-				<a href="category.do?newCid=코트"
-					style="font-size: 20px; font-weight: bold; margin-right: 10px; text-decoration: none">SHIRT</a>
-				<a href="category.do?newCid=코트"
-					style="font-size: 20px; font-weight: bold; margin-right: 10px; text-decoration: none">SHOES</a>
-				<a href="category.do?newCid=코트"
-					style="font-size: 20px; font-weight: bold; margin-right: 10px; text-decoration: none">ACC</a>
-			</div>
-
-			<div align="center" width="100px" height="100px">		<!-- 현재 나타나지 않고 있음! -->
-				<input type="text" maxlength="50" placeholder="검색어를 입력하세요."
-					id="search" onkeyup="enterkey()"><br>
-				<br>
-			</div>
 
 			<!-- Nav -->
 			<nav>
@@ -552,7 +527,7 @@
 	<div id="main">
 		<div class="inner">
 			<header align="center">
-	
+
 				<!-- 안녕! -->
 				<!----------- 슬라이드 부트스트랩 시작-------------->
 				<div class="container"></div>
@@ -776,7 +751,6 @@
 			</section>
 		</div>
 	</div>
-	</c:if>
 
 
 
