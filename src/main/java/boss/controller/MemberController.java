@@ -58,6 +58,7 @@ public class MemberController {
 
 		// member 폼에서 넘어온 값을 암호화
 		String encpassword = passwordEncoder.encode(member.getmPwd());	//게터메소드를 통해 비밀번호 값을 가져온 후 암호화
+		
 
 		// db에 넣을 member password 를 암호화 한걸로 넣기
 		member.setmPwd(encpassword);
@@ -86,7 +87,7 @@ public class MemberController {
 
 	// 로그인 첫 화면 요청 메소드 ( 기본 로그인 폼으로 이동 할때 꼭 써야 함 )
 	@RequestMapping(value = "NaverLogin.do", method = { RequestMethod.GET, RequestMethod.POST })
-	public String login(Model model, HttpSession session) {
+	public String login(Model model, HttpSession session) {		//세션은 서버에 접속한 특정 클라이언트의 정보. 로그인한 유저에 국한된 내용이 아님
 		/* 네이버아이디로 인증 URL을 생성하기 위하여 naverLoginBO클래스의 getAuthorizationUrl메소드 호출 */
 		String naverAuthUrl = naverLoginBO.getAuthorizationUrl(session);
 		// https://nid.naver.com/oauth2.0/authorize?response_type=code&client_id=mo1HJXGXT3n7A3XV59QM&
@@ -244,12 +245,17 @@ public class MemberController {
 
 		try {
 			MimeMessage message = mailSender.createMimeMessage();	//MimeMessage 객체를 통해 MIME 포맷의 메세지를 저장
-			MimeMessageHelper helper = new MimeMessageHelper(message, true, "utf-8");
-			helper.setFrom(setFrom);
-			helper.setTo(toMail);
-			helper.setSubject(title);
-			helper.setText(content, true);
-			mailSender.send(message);
+																	//메세지 객체를 매개변수로 받아 생성된 헬퍼 객체가 메세지 객체의 편집을 돕는다
+			MimeMessageHelper helper = new MimeMessageHelper(message, true, "utf-8");	//논리값은 멀티파트 활성화를 의미. 멀티파트는 여러 종류의 메시지를 포함할 수 있다는 의미
+																						//즉, 헬퍼 객체에 이미지, html문서 등 여러 포맷으로 설정된 메세지를 동시에 저장시킨 후,
+																						//수신자의 컴퓨터 환경에 따라 특정한 메세지를 선정하여 보여줄 수 있게 됨
+																						//이 코드에서는 셋텍스트 메소드가 한 번 사용되어 content가 html 문서임을 명시해뒀음
+																						//따라서 수신자는 html로 랜더링된 content 텍스트를 받게 될 것임
+			helper.setFrom(setFrom);	//출발 주소 설정
+			helper.setTo(toMail);		//도착 주소 설정
+			helper.setSubject(title);	//제목 설정
+			helper.setText(content, true);		//false를 입력하면 html 랜더링 대신 content의 내용이 그대로 출력될 것
+			mailSender.send(message);	//헬퍼에 의해 편집된 메세지 객체 전송
 			System.out.println("전송!");
 
 		} catch (Exception e) {
@@ -268,7 +274,7 @@ public class MemberController {
 	
 	// 회원수정 폼 이동 (update)
 	@RequestMapping("updateForm.do")
-	public String updateForm(HttpSession session, Model model) {
+	public String updateForm(HttpSession session, Model model) {	//세션, 즉 현재 로그인한 유저의 정보를 가져옴
 		
 		// 세션에 있는 Member 값 구해오기
 		Member dbMember = (Member) session.getAttribute("member");
@@ -300,22 +306,24 @@ public class MemberController {
 	}
 	
 
-	// 로그인 기능
+	// 기본 로그인 기능
 	@RequestMapping("login.do")
 	public ResponseEntity<Map<String, String>> Login(String mEmail, String mPwd, HttpSession session) {
+	//responseEntity는 HTTP 응답 데이터와 상태를 명시적으로 설정할 수 있는 객체. 클라이언트에 반환되는 응답의 본문(body), HTTP 상태 코드(status), 헤더(headers)를 자유롭게 제어 가능
 
-		Map<String, String> response = new HashMap<>();
+		Map<String, String> response = new HashMap<>();	//responseEntity에 사용될 맵 객체
 
 		System.out.println(mEmail);
 
-		Member dbmember = service.selectOne(mEmail);
+		Member dbmember = service.selectOne(mEmail);	//입력된 아이디 값을 통해 member 객체를 불러옴
 
-		if (dbmember != null && passwordEncoder.matches(mPwd, dbmember.getmPwd())) {
-			response.put("result", "Y");
-			session.setAttribute("member", dbmember); // dbmember 라는 이름으로 DTO 객체를 세션 공유 설정
+		if (dbmember != null && passwordEncoder.matches(mPwd, dbmember.getmPwd())) {	//해당 아이디로 된 유저가 존재하고, 비밀번호가 맞다면
+			response.put("result", "Y");	//맵 객체에 result 키와 Y 밸류를 삽입
+			session.setAttribute("member", dbmember); // member라는 이름으로 유저 정보를 세션에 저장
 		} else {
 			response.put("result", "N");
 		}
+		
 
 		return new ResponseEntity<>(response, HttpStatus.OK);
 	}

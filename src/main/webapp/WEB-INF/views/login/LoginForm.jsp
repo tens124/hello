@@ -25,12 +25,13 @@ $(document).ready(function () {
 	        dataType: "json",
 	        success: function (data) {
 	            // 서버 응답에 따른 처리
+	            //return new ResponseEntity<>(response, HttpStatus.OK);를 통해 응답이 이 페이지로 넘어온다
 	            if (data.result == "Y") {
 	                alert("로그인 성공");
 	                location.href = "main.do";
                 } else if (data.result == "N") {
 	                alert("로그인 실패");
-                    location.href = "NaverLogin.do";
+                    location.href = "NaverLogin.do";	//왜? 그냥 alert만 끄고 그대로 머물면 되지 않나?
 	            }
 	        },
     	    error: function (data) {
