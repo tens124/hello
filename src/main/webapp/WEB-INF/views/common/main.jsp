@@ -345,7 +345,15 @@
 						<br>
 						<h3 text-align="center">BEST ITEM</h3>
 				</header>
+				
+				
+				
+				
 				<section class="tiles">
+				
+					<c:if test="${sessionScope.member.mEmail ne 'boss'}">
+				
+					<!-- 하나의 article 블록은 하나의 사진 칸을 의미 -->
 					<article class="style1">
 						<span class="image"> <c:if test="${block1 == 1 }">
 								<img src="images/${mainImageList1.mainimage} " alt=""
@@ -361,6 +369,16 @@
 							<p>${mainImageList1.mainpname }</p>
 							<img src="images/hititem.png">
 						</div>
+						
+						<!-- 관리자 계정으로 접속 시 표시할 이미지 변경 버튼 -->
+						<%-- <div class="buttons_master">
+						<button class="edit-button"
+							onClick="location.href='masterProductList.do?type=change&block=1&id=${mainImageList1.pid}';">이미지
+							변경</button>
+					</div> --%>
+						
+						
+						
 					</article>
 					<article class="style1">
 						<span class="image"> <c:if test="${block2 == 2 }">
@@ -492,101 +510,13 @@
 							<img src="images/todayorder.png">
 						</div>
 					</article>
-				</section>
-			</div>
-		</div>
-
-
-			<!-- Nav -->
-			<nav>
-				<ul>
-					<li><a href="#menu">Menu</a></li>
-				</ul>
-			</nav>
-	</div>
-	</header>
-
-	<!-- Menu -->
-	<nav id="menu">
-		<cation>Menu</cation>
-		>
-		<ul>
-			<li><a href="category.do" style="text-decoration: none">카테고리</a></li>
-			<br>
-			<li><a href="freeBoardList.do" style="text-decoration: none">커뮤니티</a></li>
-			<br>
-			<li><a href="masterNotice.do" style="text-decoration: none">공지사항</a></li>
-			<br>
-			<input type="button" value="관리자페이지"
-				onclick="location.href='masterMain.do'">
-			<br>
-		</ul>
-	</nav>
-
-	<!-- Main -->
-	<div id="main">
-		<div class="inner">
-			<header align="center">
-
-				<!-- 안녕! -->
-				<!----------- 슬라이드 부트스트랩 시작-------------->
-				<div class="container"></div>
-				<div id="demo" class="carousel slide" data-ride="carousel">
-
-					<div class="carousel-inner">
-						<!-- 슬라이드 쇼 -->
-						<div class="carousel-item active">
-							<!--가로-->
-							<img class="d-block w-100" src="images/slide1.png"
-								alt="First slide">
-							<div class="carousel-caption d-none d-md-block">
-								<h5>BOSS</h5>
-								<p>BOSS BOSS</p>
-							</div>
-						</div>
-						<div class="carousel-item">
-							<img class="d-block w-100" src="images/slide2.png"
-								alt="Second slide">
-						</div>
-						<div class="carousel-item">
-							<img class="d-block w-100" src="images/slide3.png"
-								alt="Third slide">
-						</div>
-
-						<!-- / 슬라이드 쇼 끝 -->
-
-						<!-- 왼쪽 오른쪽 화살표 버튼 -->
-						<a class="carousel-control-prev" href="#demo" data-slide="prev">
-							<span class="carousel-control-prev-icon" aria-hidden="true"></span>
-							<!-- <span>Previous</span> -->
-						</a> <a class="carousel-control-next" href="#demo" data-slide="next">
-							<span class="carousel-control-next-icon" aria-hidden="true"></span>
-							<!-- <span>Next</span> -->
-						</a>
-						<!-- / 화살표 버튼 끝 -->
-
-						<!-- 인디케이터 -->
-						<ul class="carousel-indicators">
-							<li data-target="#demo" data-slide-to="0" class="active"></li>
-							<!--0번부터시작-->
-							<li data-target="#demo" data-slide-to="1"></li>
-							<li data-target="#demo" data-slide-to="2"></li>
-						</ul>
-						<!-- 인디케이터 끝 -->
-					</div>
-					<!----------- 슬라이드 부트스트랩 끝-------------->
-
-					<br>
-					<!-- 					<p align="left"> -->
-					<!-- 						남성을 위한 수트<br> 포멀함과 세심한 디자인의 기능성이 만난 남성 수트를 소개합니다.<br> 포멀 -->
-					<!-- 						& 캐주얼 스타일을 선보이는 우아한 컬렉션에서 소개하는 BO$$만의 실루엣을 발견해보세요.<br> 슬림핏과 -->
-					<!-- 						가벼운 여름 스타일부터 턱시도와 스리피스 디자인까지, 세심한 스타일링에 중점을 둔 수트 컬렉션을 지금 확인해보세요. -->
-					<!-- 					</p> -->
-					<br>
-					<h3 text-align="center">BEST ITEM</h3>
-			</header>
-			<section class="tiles">
-				<article class="style1">
+					
+					</c:if>
+					
+					
+					<!-- 관리자 페이지 -->
+					<c:if test="${!empty sessionScope.member && sessionScope.member.mEmail eq 'boss'}">
+					<article class="style1">
 					<span class="image"> <c:if test="${block1 == 1 }">
 							<img src="images/${mainImageList1.mainimage} " alt=""
 								height="450" />
@@ -748,9 +678,41 @@
 							변경</button>
 					</div>
 				</article>
-			</section>
+					</c:if>
+					
+					
+				</section>
+			</div>
 		</div>
+
+
+			<!-- Nav -->
+			<nav>
+				<ul>
+					<li><a href="#menu">Menu</a></li>
+				</ul>
+			</nav>
 	</div>
+	</header>
+
+	<!-- Menu -->
+	<nav id="menu">
+		<cation>Menu</cation>
+		>
+		<ul>
+			<li><a href="category.do" style="text-decoration: none">카테고리</a></li>
+			<br>
+			<li><a href="freeBoardList.do" style="text-decoration: none">커뮤니티</a></li>
+			<br>
+			<li><a href="masterNotice.do" style="text-decoration: none">공지사항</a></li>
+			<br>
+			<input type="button" value="관리자페이지"
+				onclick="location.href='masterMain.do'">
+			<br>
+		</ul>
+	</nav>
+
+	
 
 
 
