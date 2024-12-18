@@ -522,18 +522,24 @@
 							<img src="images/${mainImageList1.mainimage} " alt=""
 								height="450" />
 						</c:if>
-
 					</span> <a href="productDetail.do?pid=${mainImageList1.pid }">
 						<h3>${mainImageList1.mainpname }</h3>
 						<div class="content">
 							<p>${mainImageList1.maincontent}</p>
 						</div>
 					</a>
+					
+					
+					
+					
 					<div class="buttons_master">
 						<button class="edit-button"
 							onClick="location.href='masterProductList.do?type=change&block=1&id=${mainImageList1.pid}';">이미지
 							변경</button>
 					</div>
+					
+					
+					
 				</article>
 				<article class="style1">
 					<span class="image"> <c:if test="${block2 == 2 }">

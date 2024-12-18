@@ -121,11 +121,16 @@ a {
 
 						<h1>
 							<a href="category.do?newCid=${s.cid }">${s.cid} </a>
+							<!-- 현재 sample에는 product DTO가 담겨 있음. 
+							하지만, sample에 내용을 삽입하는 코드는 해당 카테고리명으로 검색한 결과를 삽입함
+							즉, 상품 테이블에 해당 카테고리가 포함된 상품이 없다면 상품 정보 또한 존재하지 않는다
+							따라서 sample 객체에는 해당 카테고리에 포함된 상품만이 저장되어 있다 -->
 						</h1>
 
 						<c:if test="${empty s }">
-							<br><br><br><br><br><br>
-							<h1>준비중입니다</h1>
+							<span class="image"> <img src="images/ready.jpg" alt=""
+								height="450">
+							</span>
 						</c:if>
 
 						<c:if test="${not empty s }">

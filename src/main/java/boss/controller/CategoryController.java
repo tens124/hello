@@ -32,7 +32,17 @@ public class CategoryController {
 				List<Product> sample = new ArrayList<Product>();	//sample 객체는 Product DTO를 저장하는 리스트
 				
 				for (String cid : clist) {		
-					sample.add(cs.samplecategory(cid));	//sample 객체에 각 카테고리별 최신 상품 하나씩을 집어넣음
+					Product p = cs.samplecategory(cid);
+					if(p == null) {
+						p = new Product();
+						p.setCid(cid);
+					}
+//					if(cs.samplecategory(cid)==null) {			//null 객체에서 메소드를 작동시키는 건 불가능
+//						p.setCid(cid);
+//					}
+//					sample.add(p);	//sample 객체에 각 카테고리별 최신 상품 하나씩을 집어넣음
+					
+					sample.add(p);
 		        }
 				
 				model.addAttribute("clist",clist);
