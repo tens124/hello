@@ -33,13 +33,14 @@ public class MainController {
 	//Model 객체는 값을 저장한 객체. 해당 모델을 통해 뷰 파일과 자바 파일 간의 공유가 이루어지기에, 값을 주고받는 메소드라면 반드시 해당 객체가 필요
 	//@RequestParam 어노테이션은 클라이언트의 HTTP 요청 파라미터를 메서드 매개변수로 바인딩
 	//url에 block이라는 요소가 포함되어 전달되어 오면, 해당 요소의 값을 block 변수에 할당할 값으로 지정. 필수값은 아니며, 만약 block 요소가 존재하지 않는다면 기본값으로 "1"을 할당
+	//block은 메인에 걸릴 대표상품들을 위한 변수!
 			throws Exception {
 
-		//MainImage는 클래스. 여러 개의 필드변수들이 존재해, DB에서 넘어오는 데이터들을 저장하는 것이 가능
+		//MainImage는 DTO
 		// 초기값 뿌려줌
 		//mainImageList 맵은 이름과 DB데이터를 함께 보관하는 듯?
 		//mainImageList_db 리스트에는 select문을 통해 db에서 가져온 사진들이 저장됨
-		Map<String, MainImage> mainImageList = new HashMap<String, MainImage>();	//얘는 왜 만드는거야? 쓰지를 않는데
+		Map<String, MainImage> mainImageList = new HashMap<String, MainImage>();	//메인에 표시될 상품리스트인듯?
 		List<MainImage> mainImageList_db = service.selectMainProductList();
 
 		// by hyesun
@@ -62,6 +63,17 @@ public class MainController {
 				//block1,1 과 mainImageList1,mainImageList.get(0)	두 가지 요소가 model 내부에 저장됨
 			}
 		}
+		
+		
+		//뷰 페이지의 상품 출력 방법. 
+//		<span class="image"> 
+//			<c:if test="${block8 == 8 }">
+//				<img src="images/${mainImageList8.mainimage} " alt="" height="450" />
+//			</c:if>
+//		</span> 
+//		<a href="productDetail.do?pid=${mainImageList8.pid }">
+		
+		
 		//model.addAttribute("block", block);
 
 		// by hyesun

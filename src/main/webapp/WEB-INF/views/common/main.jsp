@@ -351,6 +351,7 @@
 				
 				<section class="tiles">
 				
+					<!-- 일반 페이지 -->
 					<c:if test="${sessionScope.member.mEmail ne 'boss'}">
 				
 					<!-- 하나의 article 블록은 하나의 사진 칸을 의미 -->

@@ -124,7 +124,7 @@ a {
 						</h1>
 
 						<c:if test="${empty s }">
-							
+							<br><br><br><br><br><br>
 							<h1>준비중입니다</h1>
 						</c:if>
 

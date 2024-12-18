@@ -27,12 +27,12 @@ public class CategoryController {
 				@RequestParam(value = "nowPage", required = false) String nowPage,
 				@RequestParam(value = "cntPerPage", required = false) String cntPerPage, String search) throws Exception {
 			
-			if(c.getNewCid() == null) {
-				List<String> clist = cs.selectcid();
-				List<Product> sample = new ArrayList<Product>();
+			if(c.getNewCid() == null) {	//전달받은 카테고리명이 존재하지 않을 때. 즉, 메뉴에서 카테고리를 눌러서 접속했을 때
+				List<String> clist = cs.selectcid();	//모든 cid를 검색하여 clist에 저장
+				List<Product> sample = new ArrayList<Product>();	//sample 객체는 Product DTO를 저장하는 리스트
 				
-				for (String cid : clist) {
-					sample.add(cs.samplecategory(cid));
+				for (String cid : clist) {		
+					sample.add(cs.samplecategory(cid));	//sample 객체에 각 카테고리별 최신 상품 하나씩을 집어넣음
 		        }
 				
 				model.addAttribute("clist",clist);
