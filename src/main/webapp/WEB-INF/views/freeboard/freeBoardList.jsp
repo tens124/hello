@@ -13,8 +13,15 @@
 
 <!-- css 불러오기 -->
 <link rel="stylesheet" href="css/freeBoard.css">
+<link rel="stylesheet" href="assets/css/main.css" />
+
+<!-- buttons_master css -->
+<link rel="stylesheet" href="assets/css/mainhs.css" />
 <!-- <script src="https://apis.google.com/js/api.js"></script> -->
 <!-- <script src="./js/freeboardyoutube.js"></script> -->
+<noscript>
+	<link rel="stylesheet" href="assets/css/noscript.css" />
+</noscript>
 
 
 <!-- 유투브 API 시작 -->

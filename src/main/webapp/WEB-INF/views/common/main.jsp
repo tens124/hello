@@ -256,23 +256,7 @@
 			<div class="inner">
 				<header align="center">
 
-					<div class="category-link" align="center">
-						<!-- 상단 카테고리 목록 -->
-						<a href="category.do?newCid=코트"
-							style="font-size: 20px; font-weight: bold; margin-right: 10px; text-decoration: none;">OUTER</a>
-						<a href="category.do?newCid=니트"
-							style="font-size: 20px; font-weight: bold; margin-right: 10px; text-decoration: none">KNIT</a>
-						<a href="category.do?newCid=상의"
-							style="font-size: 20px; font-weight: bold; margin-right: 10px; text-decoration: none">TOP</a>
-						<a href="category.do?newCid=하의"
-							style="font-size: 20px; font-weight: bold; margin-right: 10px; text-decoration: none">BOTTOM</a>
-						<a href="category.do?newCid=셔츠"
-							style="font-size: 20px; font-weight: bold; margin-right: 10px; text-decoration: none">SHIRT</a>
-						<a href="category.do?newCid=신발"
-							style="font-size: 20px; font-weight: bold; margin-right: 10px; text-decoration: none">SHOES</a>
-						<a href="category.do?newCid=ACC"
-							style="font-size: 20px; font-weight: bold; margin-right: 10px; text-decoration: none">ACC</a>
-					</div>
+					<%@include file="list.jsp"%>
 					<div align="center" width="100px" height="100px">
 						<!-- 현재 나타나지 않고 있음! -->
 						<input type="text" maxlength="50" placeholder="검색어를 입력하세요."

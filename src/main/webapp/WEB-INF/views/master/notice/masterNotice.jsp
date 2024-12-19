@@ -220,38 +220,24 @@ body #searchtype select {
 				<%@include file="../../common/header.jsp"%>
 
 				<!--1. 회원 or 비회원 페이지 -->
-				<div class="category-link" align="center">
-					<a href="category.do?newCid=코트"
-						style="font-size: 20px; font-weight: bold; margin-right: 10px; text-decoration: none;">OUTER</a>
-					<a href="category.do?newCid=코트"
-						style="font-size: 20px; font-weight: bold; margin-right: 10px; text-decoration: none">KNIT</a>
-					<a href="category.do?newCid=상의"
-						style="font-size: 20px; font-weight: bold; margin-right: 10px; text-decoration: none">TOP</a>
-					<a href="category.do?newCid=하의"
-						style="font-size: 20px; font-weight: bold; margin-right: 10px; text-decoration: none">BOTTOM</a>
-					<a href="category.do?newCid=코트"
-						style="font-size: 20px; font-weight: bold; margin-right: 10px; text-decoration: none">SHIRT</a>
-					<a href="category.do?newCid=코트"
-						style="font-size: 20px; font-weight: bold; margin-right: 10px; text-decoration: none">SHOES</a>
-					<a href="category.do?newCid=코트"
-						style="font-size: 20px; font-weight: bold; margin-right: 10px; text-decoration: none">ACC</a>
-				</div>
+				<%@include file="../../common/list.jsp"%>
+				
 				<br>
 
 				<!---------------------- Nav --------------------->
-					<nav>
-						<ul>
-							<li><a href="#menu">Menu</a></li>
-						</ul>
-					</nav>
+				<nav>
+					<ul>
+						<li><a href="#menu">Menu</a></li>
+					</ul>
+				</nav>
 			</div>
 		</header>
+
 		<!-- Menu -->
 		<nav id="menu">
 			<h2>Menu</h2>
 			<ul>
-				<li><a href="category.do"
-					style="text-decoration: none">카테고리</a></li>
+				<li><a href="category.do" style="text-decoration: none">카테고리</a></li>
 				<br>
 				<li><a href="freeBoardList.do" style="text-decoration: none">커뮤니티</a></li>
 				<br>
@@ -297,7 +283,7 @@ body #searchtype select {
 										<td><fmt:formatDate pattern="yyyy-MM-dd hh:mm"
 												value="${masterNotice.mnReg}" /></td>
 										<td>${masterNotice.mnReadCount}</td>
-										<c:if test="${member ne null && member.mEmail eq 'master'}">
+										<c:if test="${member ne null && member.mEmail eq 'boss'}">
 											<td>
 												<button type="button"
 													onclick="javascript:update(${masterNotice.rnum},${masterNotice.mnId})">수정</button>
@@ -310,7 +296,7 @@ body #searchtype select {
 									<c:set var="i" value="${i - 1}"></c:set>
 								</c:forEach>
 							</table>
-							<c:if test="${member ne null && member.mEmail eq 'master'}">
+							<c:if test="${member ne null && member.mEmail eq 'boss'}">
 								<button type="button" onclick="javascript:popup()">공지사항
 									등록</button>
 							</c:if>

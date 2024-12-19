@@ -64,22 +64,7 @@ a {
 				<%@include file="../common/header.jsp"%>
 
 				<!--1. 회원 or 비회원 페이지 -->
-				<div class="category-link" align="center">
-					<a href="category.do?newCid=코트"
-						style="font-size: 20px; font-weight: bold; margin-right: 10px; text-decoration: none;">OUTER</a>
-					<a href="category.do?newCid=코트"
-						style="font-size: 20px; font-weight: bold; margin-right: 10px; text-decoration: none">KNIT</a>
-					<a href="category.do?newCid=상의"
-						style="font-size: 20px; font-weight: bold; margin-right: 10px; text-decoration: none">TOP</a>
-					<a href="category.do?newCid=하의"
-						style="font-size: 20px; font-weight: bold; margin-right: 10px; text-decoration: none">BOTTOM</a>
-					<a href="category.do?newCid=코트"
-						style="font-size: 20px; font-weight: bold; margin-right: 10px; text-decoration: none">SHIRT</a>
-					<a href="category.do?newCid=코트"
-						style="font-size: 20px; font-weight: bold; margin-right: 10px; text-decoration: none">SHOES</a>
-					<a href="category.do?newCid=코트"
-						style="font-size: 20px; font-weight: bold; margin-right: 10px; text-decoration: none">ACC</a>
-				</div>
+				<%@include file="../common/list.jsp"%>
 				<div align="center" width="100px" height="100px">
 					<input type="text" maxlength="50" placeholder="검색어를 입력하세요."
 						id="search" onkeyup="enterkey()"><br>
