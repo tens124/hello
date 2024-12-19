@@ -350,343 +350,44 @@
 				
 				
 				<section class="tiles">
-				
+					
+					<c:forEach var = "M" items = "${main}" varStatus="loop">
+					
+					<article class="style1">
+					<span class="image">
+						<img src="images/${M.mainimage} " alt=""
+									height="450" />
+					</span>
+									
+						<a href="productDetail.do?pid=${M.pid }">
+							<div class="content">
+								<p>${M.maincontent}</p>
+							</div>
+						</a>		
+						
 					<!-- 일반 페이지 -->
 					<c:if test="${sessionScope.member.mEmail ne 'boss'}">
-				
-					<!-- 하나의 article 블록은 하나의 사진 칸을 의미 -->
-					<article class="style1">
-						<span class="image"> <c:if test="${block1 == 1 }">
-								<img src="images/${mainImageList1.mainimage} " alt=""
-									height="450" />
-							</c:if>
-
-						</span> <a href="productDetail.do?pid=${mainImageList1.pid }">
-							<div class="content">
-								<p>${mainImageList1.maincontent}</p>
-							</div>
-						</a>
+						
 						<div class="mainimg-senter">
-							<p>${mainImageList1.mainpname }</p>
-							<img src="images/hititem.png">
-						</div>
-						
-						<!-- 관리자 계정으로 접속 시 표시할 이미지 변경 버튼 -->
-						<%-- <div class="buttons_master">
-						<button class="edit-button"
-							onClick="location.href='masterProductList.do?type=change&block=1&id=${mainImageList1.pid}';">이미지
-							변경</button>
-					</div> --%>
-						
-						
-						
-					</article>
-					<article class="style1">
-						<span class="image"> <c:if test="${block2 == 2 }">
-								<img src="images/${mainImageList2.mainimage} " alt=""
-									height="450" />
-							</c:if>
-
-						</span> <a href="productDetail.do?pid=${mainImageList2.pid }">
-							<div class="content">
-								<p>${mainImageList2.maincontent}</p>
-							</div>
-						</a>
-						<div class="mainimg-senter">
-							<p>${mainImageList2.mainpname }</p>
+							<p>${M.mainpname }</p>
 							<img src="images/hit.png">
-						</div>
-					</article>
-					<article class="style1">
-						<span class="image"> <c:if test="${block3 == 3 }">
-								<img src="images/${mainImageList3.mainimage} " alt=""
-									height="450" />
-							</c:if>
-
-						</span> <a href="productDetail.do?pid=${mainImageList3.pid }">
-							<div class="content">
-								<p>${mainImageList3.maincontent}</p>
-							</div>
-						</a>
-						<div class="mainimg-senter">
-							<p>${mainImageList3.mainpname }</p>
-							<img src="images/best.png">
-						</div>
-					</article>
-					<!-- <br><h3 text-align="center">WEEKLY BEST</h3><br> -->
-					<article class="style1">
-						<span class="image"> <c:if test="${block4 == 4 }">
-								<img src="images/${mainImageList4.mainimage} " alt=""
-									height="450" />
-							</c:if>
-
-						</span> <a href="productDetail.do?pid=${mainImageList4.pid }">
-							<div class="content">
-								<p>${mainImageList4.maincontent}</p>
-							</div>
-						</a>
-						<div class="mainimg-senter">
-							<p>${mainImageList4.mainpname }</p>
-							<img src="images/new.png">
-						</div>
-					</article>
-					<article class="style1">
-						<span class="image"> <c:if test="${block5 == 5 }">
-								<img src="images/${mainImageList5.mainimage} " alt=""
-									height="450" />
-							</c:if>
-
-						</span> <a href="productDetail.do?pid=${mainImageList5.pid }">
-							<div class="content">
-								<p>${mainImageList5.maincontent}</p>
-							</div>
-						</a>
-						<div class="mainimg-senter">
-							<p>${mainImageList5.mainpname }</p>
-							<img src="images/new.png">
-						</div>
-					</article>
-					<article class="style1">
-						<span class="image"> <c:if test="${block6 == 6 }">
-								<img src="images/${mainImageList6.mainimage} " alt=""
-									height="450" />
-							</c:if>
-
-						</span> <a href="productDetail.do?pid=${mainImageList6.pid }">
-							<div class="content">
-								<p>${mainImageList6.maincontent}</p>
-							</div>
-						</a>
-						<div class="mainimg-senter">
-							<p>${mainImageList6.mainpname }</p>
-							<img src="images/new.png">
-						</div>
-					</article>
-					<!-- 에러시작 -->
-					<article class="style1">
-						<span class="image"> <c:if test="${block7 == 7 }">
-								<img src="images/${mainImageList7.mainimage} " alt=""
-									height="450" />
-							</c:if>
-
-						</span> <a href="productDetail.do?pid=${mainImageList7.pid }">
-							<div class="content">
-								<p>${mainImageList7.maincontent}</p>
-							</div>
-						</a>
-						<div class="mainimg-senter">
-							<p>${mainImageList7.mainpname }</p>
-							<img src="images/todayorder.png">
-						</div>
-					</article>
-					<article class="style1">
-						<span class="image"> <c:if test="${block8 == 8 }">
-								<img src="images/${mainImageList8.mainimage} " alt=""
-									height="450" />
-							</c:if>
-
-						</span> <a href="productDetail.do?pid=${mainImageList8.pid }">
-							<div class="content">
-								<p>${mainImageList8.maincontent}</p>
-							</div>
-						</a>
-						<div class="mainimg-senter">
-							<p>${mainImageList8.mainpname }</p>
-							<img src="images/todayorder.png">
-						</div>
-					</article>
-					<article class="style1">
-						<span class="image"> <c:if test="${block9 == 9 }">
-								<img src="images/${mainImageList9.mainimage} " alt=""
-									height="450" />
-							</c:if>
-
-						</span> <a href="productDetail.do?pid=${mainImageList9.pid }">
-							<div class="content">
-								<p>${mainImageList9.maincontent}</p>
-							</div>
-						</a>
-						<div class="mainimg-senter">
-							<p>${mainImageList9.mainpname }</p>
-							<img src="images/todayorder.png">
-						</div>
-					</article>
+						</div>	
+					
 					
 					</c:if>
-					
 					
 					<!-- 관리자 페이지 -->
 					<c:if test="${!empty sessionScope.member && sessionScope.member.mEmail eq 'boss'}">
-					<article class="style1">
-					<span class="image"> <c:if test="${block1 == 1 }">
-							<img src="images/${mainImageList1.mainimage} " alt=""
-								height="450" />
-						</c:if>
-					</span> <a href="productDetail.do?pid=${mainImageList1.pid }">
-						<h3>${mainImageList1.mainpname }</h3>
-						<div class="content">
-							<p>${mainImageList1.maincontent}</p>
-						</div>
-					</a>
-					
-					
-					
-					
 					<div class="buttons_master">
 						<button class="edit-button"
-							onClick="location.href='masterProductList.do?type=change&block=1&id=${mainImageList1.pid}';">이미지
+							onClick="location.href='masterProductList.do?type=change&block=${M.mainid}';">이미지
 							변경</button>
 					</div>
-					
-					
-					
-				</article>
-				<article class="style1">
-					<span class="image"> <c:if test="${block2 == 2 }">
-							<img src="images/${mainImageList2.mainimage} " alt=""
-								height="450" />
-						</c:if>
-
-					</span> <a href="productDetail.do?pid=${mainImageList2.pid }">
-						<h3>${mainImageList2.mainpname }</h3>
-						<div class="content">
-							<p>${mainImageList2.maincontent}</p>
-						</div>
-					</a>
-					<div class="buttons_master">
-						<button class="edit-button"
-							onClick="location.href='masterProductList.do?type=change&block=2';">이미지
-							변경</button>
-					</div>
-				</article>
-				<article class="style2">
-					<span class="image"> <c:if test="${block3 == 3 }">
-							<img src="images/${mainImageList3.mainimage} " alt=""
-								height="450" />
-						</c:if>
-
-					</span> <a href="productDetail.do?pid=${mainImageList3.pid }">
-						<h3>${mainImageList3.mainpname }</h3>
-						<div class="content">
-							<p>${mainImageList3.maincontent}</p>
-						</div>
-					</a>
-					<div class="buttons_master">
-						<button class="edit-button"
-							onClick="location.href='masterProductList.do?type=change&block=3';">이미지
-							변경</button>
-					</div>
-				</article>
-				<article class="style3">
-					<span class="image"> <c:if test="${block4 == 4 }">
-							<img src="images/${mainImageList4.mainimage} " alt=""
-								height="450" />
-						</c:if>
-
-					</span> <a href="productDetail.do?pid=${mainImageList4.pid }">
-						<h3>${mainImageList4.mainpname }</h3>
-						<div class="content">
-							<p>${mainImageList4.maincontent}</p>
-						</div>
-					</a>
-					<div class="buttons_master">
-						<button class="edit-button"
-							onClick="location.href='masterProductList.do?type=change&block=4';">이미지
-							변경</button>
-					</div>
-				</article>
-				<article class="style4">
-					<span class="image"> <c:if test="${block5 == 5 }">
-							<img src="images/${mainImageList5.mainimage} " alt=""
-								height="450" />
-						</c:if>
-
-					</span> <a href="productDetail.do?pid=${mainImageList5.pid }">
-						<h3>${mainImageList5.mainpname }</h3>
-						<div class="content">
-							<p>${mainImageList5.maincontent}</p>
-						</div>
-					</a>
-					<div class="buttons_master">
-						<button class="edit-button"
-							onClick="location.href='masterProductList.do?type=change&block=5';">이미지
-							변경</button>
-					</div>
-				</article>
-				<article class="style5">
-					<span class="image"> <c:if test="${block6 == 6 }">
-							<img src="images/${mainImageList6.mainimage} " alt=""
-								height="450" />
-						</c:if>
-
-					</span> <a href="productDetail.do?pid=${mainImageList6.pid }">
-						<h3>${mainImageList6.mainpname }</h3>
-						<div class="content">
-							<p>${mainImageList6.maincontent}</p>
-						</div>
-					</a>
-					<div class="buttons_master">
-						<button class="edit-button"
-							onClick="location.href='masterProductList.do?type=change&block=6';">이미지
-							변경</button>
-					</div>
-				</article>
-				<article class="style6">
-					<span class="image"> <c:if test="${block7 ==  7}">
-							<img src="images/${mainImageList7.mainimage} " alt=""
-								height="450" />
-						</c:if>
-
-					</span> <a href="productDetail.do?pid=${mainImageList7.pid }">
-						<h3>${mainImageList7.mainpname }</h3>
-						<div class="content">
-							<p>${mainImageList7.maincontent}</p>
-						</div>
-					</a>
-					<div class="buttons_master">
-						<button class="edit-button"
-							onClick="location.href='masterProductList.do?type=change&block=7';">이미지
-							변경</button>
-					</div>
-				</article>
-				<article class="style1">
-					<span class="image"> <c:if test="${block8 == 8 }">
-							<img src="images/${mainImageList8.mainimage} " alt=""
-								height="450" />
-						</c:if>
-
-					</span> <a href="productDetail.do?pid=${mainImageList8.pid }">
-						<h3>${mainImageList8.mainpname }</h3>
-						<div class="content">
-							<p>${mainImageList8.maincontent}</p>
-						</div>
-					</a>
-					<div class="buttons_master">
-						<button class="edit-button"
-							onClick="location.href='masterProductList.do?type=change&block=8';">이미지
-							변경</button>
-					</div>
-				</article>
-				<article class="style2">
-					<span class="image"> <c:if test="${block9 == 9 }">
-							<img src="images/${mainImageList9.mainimage} " alt=""
-								height="450" />
-						</c:if>
-
-					</span> <a href="productDetail.do?pid=${mainImageList9.pid }">
-						<h3>${mainImageList9.mainpname }</h3>
-						<div class="content">
-							<p>${mainImageList9.maincontent}</p>
-						</div>
-					</a>
-					<div class="buttons_master">
-						<button class="edit-button"
-							onClick="location.href='masterProductList.do?type=change&block=9';">이미지
-							변경</button>
-					</div>
-				</article>
 					</c:if>
 					
+					</article>
+					
+					</c:forEach>
 					
 				</section>
 			</div>

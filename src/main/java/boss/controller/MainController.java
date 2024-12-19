@@ -41,7 +41,7 @@ public class MainController {
 		//mainImageList 맵은 이름과 DB데이터를 함께 보관하는 듯?
 		//mainImageList_db 리스트에는 select문을 통해 db에서 가져온 사진들이 저장됨
 		Map<String, MainImage> mainImageList = new HashMap<String, MainImage>();	//메인에 표시될 상품리스트
-		List<MainImage> mainImageList_db = service.selectMainProductList();		//db에서 메인이미지 테이블에 존재하는 상품을 전부 가져옴
+		List<MainImage> mainImageList_db = service.selectMainProductList();		//db에서 메인이미지 테이블에 존재하는 상품을 전부 가져옴. 1~9 순서대로!
 
 		// by hyesun
 //		Collections.sort(mainImageList_db, new Comparator<MainImage>() {
@@ -52,17 +52,19 @@ public class MainController {
 //        });
 		// by hyesun end
 
-		if (mainImageList_db.size() > 0) { // DB 검색 결과 1개라도 구해옴.
-			for (int i = 0; i < mainImageList_db.size(); i++) { // list size만큼 put
-
-				// int s = Integer.parseInt(block);
-
-				model.addAttribute("block" + (i + 1), i + 1);	
-				model.addAttribute("mainImageList" + (i+1), mainImageList_db.get(i));
-				//model(이름,값) 객체에 값을 저장한다
-				//block1,1 과 mainImageList1,mainImageList.get(0)	두 가지 요소가 model 내부에 저장됨
-			}
-		}
+//		if (mainImageList_db.size() > 0) { // DB 검색 결과 1개라도 구해옴.
+//			for (int i = 0; i < mainImageList_db.size(); i++) { // list size만큼 put
+//
+//				// int s = Integer.parseInt(block);
+//
+//				model.addAttribute("block" + (i + 1), i + 1);	
+//				model.addAttribute("mainImageList" + (i+1), mainImageList_db.get(i));
+//				//model(이름,값) 객체에 값을 저장한다
+//				//block1,1 과 mainImageList1,mainImageList.get(0)	두 가지 요소가 model 내부에 저장됨
+//			}
+//		}
+		
+		model.addAttribute("main", mainImageList_db);
 		
 		
 		//뷰 페이지의 상품 출력 방법. 
