@@ -40,8 +40,8 @@ public class MainController {
 		// 초기값 뿌려줌
 		//mainImageList 맵은 이름과 DB데이터를 함께 보관하는 듯?
 		//mainImageList_db 리스트에는 select문을 통해 db에서 가져온 사진들이 저장됨
-		Map<String, MainImage> mainImageList = new HashMap<String, MainImage>();	//메인에 표시될 상품리스트인듯?
-		List<MainImage> mainImageList_db = service.selectMainProductList();
+		Map<String, MainImage> mainImageList = new HashMap<String, MainImage>();	//메인에 표시될 상품리스트
+		List<MainImage> mainImageList_db = service.selectMainProductList();		//db에서 메인이미지 테이블에 존재하는 상품을 전부 가져옴
 
 		// by hyesun
 //		Collections.sort(mainImageList_db, new Comparator<MainImage>() {
