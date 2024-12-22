@@ -5,6 +5,7 @@ import java.util.Map;
 import java.util.Random;
 
 import javax.mail.internet.MimeMessage;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.json.simple.JSONObject;
@@ -48,6 +49,7 @@ public class MemberController {
 	private void setNaverLoginBO(NaverLoginBO naverLoginBO) {
 		this.naverLoginBO = naverLoginBO;
 	}
+	
 
 	// 회원가입 진행하고 ajax 콜백하기
 	@RequestMapping("insertMember.do")
@@ -327,6 +329,14 @@ public class MemberController {
 
 		return new ResponseEntity<>(response, HttpStatus.OK);
 	}
+	
+	//로그인 상태 확인
+	@RequestMapping("loginCheck.do")
+	public String loginCheck(HttpServletRequest request) {	// 로그인되지 않은 상태에서 이 URL로 접근하면 모달을 띄우고 로그인 페이지로 리다이렉트
+        request.setAttribute("loginMessage", "로그인이 필요합니다!");
+        return "login/loginCheck"; 
+    }
+	
 
 	// 로그아웃 세션 종료
 	@RequestMapping(value = "Logout.do")

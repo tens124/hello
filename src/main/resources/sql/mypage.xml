@@ -57,6 +57,9 @@
         order by b.qid desc, r.qrid asc)
         
         A)
+        <!-- rownum은 가상의 값. 검색결과에 표시하는 것은 가능하지만 
+        sql문을 통해 조작하는 것은 불가능
+        따라서 해당코드를 인라인뷰로 삼아 조작 가능한 뷰를 생성해주고 거기서 다시 검색-->
         
         where rnum between #{start} and #{end}
 	</select>
