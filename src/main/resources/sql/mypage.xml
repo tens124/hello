@@ -44,18 +44,21 @@
 
 	<!-- 내 QnA 목록 불러오기 + 페이징 -->
 	<select id="myqnas" parameterType="Map" resultType="qnaBoard">	<!-- 맵 자료구조를 받아 qnaBoard 객체를 반환 -->
-		select * from 
-		(select rownum rnum, A.* from 
-		(select * from 
+		select * from
 		
-		(select qnaboard.*, null as qnayn, 0 as qrid, null as qrreg, null as qrdrop from qnaboard
-		union
-		select qid, memail, null as qnatitle, null as qnacontent, null as qnaorifile,null as qnareg,null as qnadrop,
-		'Y' as qnayn,qrid,qrreg,qrdrop from qnareply) 
-		
-		where memail=#{memail} and (qnadrop != 'Y' or qrdrop != 'Y') order by qid DESC, qrid asc) 
-		A)
-		where rnum between #{start} and #{end}
+        (select rownum rnum, A.* from
+        
+        (select b.*,r.qrid,r.qrcontent,qrreg,qrdrop
+		from qnaboard b
+		full outer join qnareply r
+		on b.qid=r.qid
+		where b.qnadrop = 'N' 
+        and b.memail=#{memail} 
+        order by b.qid desc, r.qrid asc)
+        
+        A)
+        
+        where rnum between #{start} and #{end}
 	</select>
 	
 	<!-- QnA 등록 -->

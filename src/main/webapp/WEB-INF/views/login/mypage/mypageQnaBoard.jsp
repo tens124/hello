@@ -104,7 +104,6 @@ width: 100%;
 						<c:forEach items="${qlist }" varStatus="loop" var="QnaBoard">
 
 							<!-- 문의글 출력 -->
-							<c:if test="${QnaBoard.qrid ==0 }">
 								<tr onclick="javascript:qna(${QnaBoard.rnum },${QnaBoard.qid },${pp.cntPerPage })">
 									<td>${QnaBoard.qnatitle }</td>
 									<td>${QnaBoard.qnacontent }</td>
@@ -126,10 +125,10 @@ width: 100%;
 										onclick="javascript:deleteCheck(${QnaBoard.qid})">
 									</td>
 								</tr>
-							</c:if>
 
-							<!-- 새로운부분. 댓글 출력. 댓글의 경우 상대가 지워도 이쪽에선 모름. 따라서 Y 조건이 반드시 필요 -->
-							<c:if test="${QnaBoard.qrid !=0 && QnaBoard.qrdrop != 'Y'}">
+							<!-- 댓글 출력. 댓글의 경우 원본글이 지워지지 않은 상태 + 답변이 완료된 경우에만 출력되어야 한다 -->
+							<!-- 우선 풀 아우터 조인을 통해 원본과 댓글 테이블의 데이터를 하나의 컬럼으로 조합한 후, 답변이 완료된 상태라면 원본의 바로 아래에 따라 출력하도록 변경 -->
+							<c:if test="${QnaBoard.qnayn =='Y' && QnaBoard.qrdrop != 'Y'}">
 								<tr
 									onClick="javascript:reply(${QnaBoard.rnum },${QnaBoard.qrid },${pp.cntPerPage })">
 									<td colspan="3">ㅤㄴ답변 확인</td>
@@ -139,9 +138,6 @@ width: 100%;
 							</c:if>
 						</c:forEach>
 					</table>
-		<!-- 글 입력 버튼 생성 -->
-		<button type="button" class="qna_btn" onclick="javascript:popup()">문의작성</button>
-		
 			</div>
 		</c:if>
 		
@@ -150,6 +146,12 @@ width: 100%;
 			<div class="content_noQnA">
 				<h1>작성한 QnA글이 없습니다</h1>
 			</div>
+		</c:if>
+		
+		<!-- 글 입력 버튼 생성 -->
+		<button type="button" class="qna_btn" onclick="javascript:popup()">문의작성</button>
+		<c:if test="${empty qlist}">
+			<br>
 		</c:if>
 
 
