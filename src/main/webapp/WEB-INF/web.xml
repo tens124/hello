@@ -33,13 +33,20 @@
 	</context-param>
 	
 	<!-- Creates the Spring Container shared by all Servlets and Filters -->
+	<!-- 리스너 : 웹 애플리케이션에서 발생하는 특정 이벤트를 감지하고, 그에 대한 동작을 수행하는 컴포넌트 
+	web.xml에 설정된 리스너는 애플리케이션의 시작, 종료, 세션 생성/소멸 등과 같은 라이프사이클 이벤트를 처리하는 데 사용-->
 	<listener>
+		<!-- ContextLoaderListener : 애플리케이션 시작 시 루트 컨텍스트를 생성하고 초기화하는 역할
+			 Spring 설정 파일(contextConfigLocation)을 로드
+			 루트 컨텍스트에 정의된 빈을 생성 및 초기화
+			 서블릿 컨텍스트와 별도로 전역적으로 사용할 빈 관리(서블릿은 각각의 빈 컨테이너를 따로 가지고 있음) -->
 		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
 	</listener>
 
 	<!-- Processes application requests -->
 	<servlet>
 		<servlet-name>appServlet</servlet-name>
+		<!-- 디스패쳐 서블릿 : 프론트 컨트롤러. 요청 발생 시 가장 먼저 반응 -->
 		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
 		<init-param>
 			<param-name>contextConfigLocation</param-name>
