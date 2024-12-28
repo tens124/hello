@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans
+	xmlns="http://www.springframework.org/schema/mvc"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:beans="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/mvc https://www.springframework.org/schema/mvc/spring-mvc.xsd
+		http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd">
+		
+<!-- 서블릿 컨텍스트. 서블릿들의 기초 설정을 담당하는 파일 -->
+
+	<annotation-driven />
+	<!-- 해당 패키지의 어노테이션들은 자동으로 스캔됨! 이 설정을 통해 스캔 범위를 제한하는 것이 가능 -->
+	<!-- 컴포넌트 스캔은 루트/서블릿 컨텍스트 고유의 기능
+		 더욱 심화된 프로젝트에서는 뷰와 관련된 설정(뷰 리졸버/컨트롤러/핸들러 매핑)은 서블릿 컨텍스트에서, 뷰와 관련되지 않은 설정(서비스, 레파지토리)은 루트 컨텍스트에서 담당하라고 하지만.. 굳이 분리하지 않아도 됨 -->
+	<context:component-scan base-package="boss" />
+
+	<!-- 인터셉터 등록 -->
+	<interceptors>
+		<interceptor>
+			<mapping path="/*.else" /> 
+			<!-- 인터셉터 매핑을 특정 디렉토리 이하의 요청들에 걸고싶은데, 방법이 없을까? -->
+			<!-- 현재는 /login/*.do, /login/**, 상세 경로 기술 등 전부 작동x -->
+			<!-- 새로운 네임스페이스를 생성해 또 하나의 루트디렉토리를 만든다면? -->
+			<!-- 새로운 디스패쳐 서블릿을 만들어 또 다른 형태의 요청명을 만들어낸다면? 
+			다만 새로운 서블릿을 생성하는 것은 곧 새로운 빈 컨테이너를 생성하는 것과 마찬가지. 따라서 빈 관리가 어려워진다-->
+			<beans:bean class="boss.common.LoginCheckInterceptor" /> <!-- 등록할 인터셉터 클래스 -->  
+		</interceptor>
+	</interceptors>
+
+</beans:beans>

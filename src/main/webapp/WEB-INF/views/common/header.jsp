@@ -43,7 +43,7 @@
 					test="${!empty sessionScope.member && sessionScope.member.mEmail eq 'boss'}">
 					<a href="Logout.do" onclick="alert('로그아웃')"><img
 						src="./images/logout.png" style="text-decoration: none"></a>
-					<a href="mypage.do"><img src="./images/my.png"
+					<a href="mypage.else"><img src="./images/my.png"
 						style="text-decoration: none"></a>
 					<a href="cartFormMove.do"><img src="./images/cart.png"
 						style="text-decoration: none"></a>
@@ -63,7 +63,7 @@
 					test="${!empty sessionScope.member && sessionScope.member.mEmail ne 'boss'}">
 					<a href="Logout.do" onclick="alert('로그아웃')"><img
 						src="./images/logout.png" style="text-decoration: none"></a>
-					<a href="mypage.do"><img src="./images/my.png"
+					<a href="mypage.else"><img src="./images/my.png"
 						style="text-decoration: none"></a>
 					<a href="cartFormMove.do"><img src="./images/cart.png"
 						style="text-decoration: none"></a>

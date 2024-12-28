@@ -43,7 +43,7 @@ public class MypageController {
 	// 마이페이지 이동
 
 
-	@RequestMapping("mypage.do")
+	@RequestMapping("mypage.else")
 	public String doMypage(HttpSession session, Model model) {
 		System.out.println("마이 페이지 이동");
 

@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- 서블릿들의 기초 설정을 담당하는 파일 -->
 <beans:beans
 	xmlns="http://www.springframework.org/schema/mvc"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -8,16 +7,17 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/mvc https://www.springframework.org/schema/mvc/spring-mvc.xsd
 		http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd">
+		
+<!-- 서블릿 컨텍스트. 서블릿들의 기초 설정을 담당하는 파일 -->
 
-	<!-- DispatcherServlet Context: defines this servlet's request-processing 
-		infrastructure -->
-	<!-- 디스패쳐 서블릿, 즉 프론트 컨트롤러의 설정을 기술할 부분. web.xml에 기록된 디스패쳐 서블릿이 이 파일의 설정들을 읽어 사용하게 됨  -->
+	<!-- DispatcherServlet Context: defines this servlet's request-processing infrastructure -->
+	<!-- 디스패쳐 서블릿, 즉 프론트 컨트롤러의 설정을 기술. web.xml에 기록된 디스패쳐 서블릿이 이 파일의 설정들을 읽어 사용하게 됨  -->
+	<!-- 디스패쳐 서블릿은 자신의 빈 컨테이너에서 우선적으로 빈을 찾아 사용!  -->
 	
 	<!-- Enables the Spring MVC @Controller programming model -->
 	<!-- 스프링의 여러 어노테이션이 활성화된다. 이를 통해 컨트롤러, 혹은 리퀘스트매핑 등의 여러 어노테이션을 사용하는 것이 가능 -->
 	<!-- 스프링 MVC의 기능들이 활성화되어, 별도의 프론트 컨트롤러 설정은 필요하지 않게 됨. 디스패쳐 서블릿의 기능 또한 MVC에서 
 		오는 것이기에 -->
-	<annotation-driven />
 
 	<!-- 정적 리소스들의 경로를 설정해 둔 파일. 해당 요청엔 해당 경로의 파일들이 맵핑된다 -->
 	<!-- ex)/css/styles.css 요청 → src/main/webapp/css/styles.css 파일이 반환 -->
@@ -25,33 +25,37 @@
 		up static resources in the ${webappRoot}/resources directory -->
 
 	<!-- <resources mapping="/resources/**" location="/resources/" /> -->
-	<!-- webapp이 기준. 해당 정적 리소스 경로는 스프링에서 기본적으로 설정되어 있음 -->
-	<resources mapping="/css/**" location="/css/" />
+	<!-- webapp이 기준. 해당 정적 리소스 경로는 스프링에서 기본적으로 설정되어 있음. web 파일에서 매핑하도록 처리 -->
+	<!-- <resources mapping="/css/**" location="/css/" />
 	<resources mapping="/assets/**" location="/assets/" />
 	<resources mapping="/js/**" location="/js/" />
 	<resources mapping="/images/**" location="/images/" />
-	<resources mapping="/fonts/**" location="/fonts/" />
+	<resources mapping="/fonts/**" location="/fonts/" /> -->
 
 	<!-- 뷰 리졸버 설정. 뷰 관련 파일들의 위치와 확장자명이 기술되어 있어 파일명만 입력해도 프로젝트가 인식 가능 -->
 	<!-- Resolves views selected for rendering by @Controllers to .jsp resources 
 		in the /WEB-INF/views directory -->
-	<beans:bean
+	<!-- <beans:bean
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<beans:property name="prefix" value="/WEB-INF/views/" />
 		<beans:property name="suffix" value=".jsp" />
-	</beans:bean>
+	</beans:bean> -->
 
 	<!-- NaverLoginBO Class에 대한 Bean설정 추가 -->
-	<beans:bean id="naverLoginBO"
-		class="boss.controller.NaverLoginBO" />
+	<!-- <beans:bean id="naverLoginBO"
+		class="boss.controller.NaverLoginBO" /> -->
 
 	<!-- 파일 업로드 설정 -->
-	<beans:bean id="multipartResolver"
+	<!-- <beans:bean id="multipartResolver"
 		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
 		<beans:property name="maxUploadSize" value="10000000" />
-	</beans:bean>
+	</beans:bean> -->
 
+
+	<annotation-driven />
 	<!-- 해당 패키지의 어노테이션들은 자동으로 스캔됨! 이 설정을 통해 스캔 범위를 제한하는 것이 가능 -->
+	<!-- 컴포넌트 스캔은 루트/서블릿 컨텍스트 고유의 기능
+		 더욱 심화된 프로젝트에서는 뷰와 관련된 설정(뷰 리졸버/컨트롤러/핸들러 매핑)은 서블릿 컨텍스트에서, 뷰와 관련되지 않은 설정(서비스, 레파지토리)은 루트 컨텍스트에서 담당하라고 하지만.. 굳이 분리하지 않아도 됨 -->
 	<context:component-scan base-package="boss" />
 
 	<!-- 인터셉터 등록 -->

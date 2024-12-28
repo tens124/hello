@@ -2,6 +2,13 @@
 <web-app version="2.5" xmlns="http://java.sun.com/xml/ns/javaee"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee https://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
+	
+	<!-- web.xml은 웹 애플리케이션의 동작 방식을 정의하는 역할. 가장 기초적인 설정 파일
+		 서블릿 관련 설정을 담당하는 파일로, 애플리케이션의 서블릿과 필터, 리소스 매핑 등을 정의. 주로 웹 애플리케이션의 배치 설정
+		 애플리케이션은 서블릿과 이를 보조하는 여러 시스템들의 결합. 핵심은 서블릿이다 -->
+		 
+	<!-- 컨텍스트 : 스프링 프레임워크에서 애플리케이션의 중요한 설정 정보와 상태를 관리하는 빈들의 집합 -->
+	<!-- 컨테이너 : 실제로 구현된 컨테이너. 동일하다 봐도 됨 -->
 
 	<!-- 한글 인코딩 설정 : post방식. url에 데이터를 직접 입력하여 전송하지 않음 -->
 	<!-- 이 필터는 필터를 통과하는 모든 요청에 UTF-8로의 강제 인코딩을 적용시킴 -->
@@ -31,33 +38,69 @@
 					 /WEB-INF/spring/spring-security.xml
 		</param-value>
 	</context-param>
+	<!-- ApplicationContext는 스프링 프로젝트의 근간이 되는 핵심 컨테이너. 애플리케이션의 모든 빈을 관리한다
+	 	 contextConfigLocation은 이 핵심 컨테이너를 구성하는 설정 파일의 위치를 지정하는 역할
+	 	 <context-param>은 컨테이너를 구성하기 위한 설정이라 보면 됨
+	 	 이름은 contextConfigLocation로, 값은 설정 파일들의 이름으로 작성 시 ApplicationContext 컨테이너를 생성 
+	 	 보통은 일관적인 빈 관리를 위해 하나의 컨테이너만 작성 -->
 	
 	<!-- Creates the Spring Container shared by all Servlets and Filters -->
 	<!-- 리스너 : 웹 애플리케이션에서 발생하는 특정 이벤트를 감지하고, 그에 대한 동작을 수행하는 컴포넌트 
 	web.xml에 설정된 리스너는 애플리케이션의 시작, 종료, 세션 생성/소멸 등과 같은 라이프사이클 이벤트를 처리하는 데 사용-->
 	<listener>
-		<!-- ContextLoaderListener : 애플리케이션 시작 시 루트 컨텍스트를 생성하고 초기화하는 역할
-			 Spring 설정 파일(contextConfigLocation)을 로드
-			 루트 컨텍스트에 정의된 빈을 생성 및 초기화
-			 서블릿 컨텍스트와 별도로 전역적으로 사용할 빈 관리(서블릿은 각각의 빈 컨테이너를 따로 가지고 있음) -->
 		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
 	</listener>
+		<!-- ContextLoaderListener : 애플리케이션 시작 시 루트 컨텍스트를 생성하고 초기화하는 역할. 서버 구동 시 작동
+			 1.Spring 설정 파일(contextConfigLocation)을 로드
+			 2.루트 컨텍스트에 정의된 빈을 생성 및 초기화
+			 3.서블릿 컨텍스트와 별도로 전역적으로 사용할 빈 관리(서블릿은 각각의 빈 컨테이너를 따로 가지고 있음) -->
 
 	<!-- Processes application requests -->
+	<!-- 서블릿 : HTTP 요청을 받고 응답을 생성하는 독립적인 기능을 수행
+		 경량화된 컨테이너로, root 컨테이너에 존재하는 빈들을 사용하면서도 자체적인 빈들을 우선 사용할 수 있다 -->
 	<servlet>
 		<servlet-name>appServlet</servlet-name>
-		<!-- 디스패쳐 서블릿 : 프론트 컨트롤러. 요청 발생 시 가장 먼저 반응 -->
+		<!-- 디스패쳐 서블릿 : 프론트 컨트롤러. 요청 발생 시 가장 먼저 반응. 웹 애플리케이션의 웹 요청을 처리하는 핵심 서블릿 -->
 		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
 		<init-param>
+			<!-- contextConfigLocation은 설정파일의 위치를 알려주는 파라미터. value에 실제 위치를 기록 -->
 			<param-name>contextConfigLocation</param-name>
 			<param-value>/WEB-INF/spring/appServlet/servlet-context.xml</param-value>
 		</init-param>
 		<load-on-startup>1</load-on-startup>
+		<!-- 값이 양의 정수라면 서블릿이 서버 시작 즉시 로드됨 
+			 값이 0 혹은 음의 정수라면 서버 시작 시 로드되지 않고 첫 요청이 발생해야 로드됨
+			 외부 시스템과 연동 등 시간이 걸리는 작업이라면 서버 시작 시점에 로드되어 초기화하는 것이 유리하다-->
 	</servlet>
 		
 	<servlet-mapping>
 		<servlet-name>appServlet</servlet-name>
 		<url-pattern>*.do</url-pattern>
 	</servlet-mapping>
+	
+	<!-- .else 확장자를 처리하는 서블릿 -->
+	<servlet>
+        <servlet-name>elseServlet</servlet-name>
+        <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+        <init-param>
+            <param-name>contextConfigLocation</param-name>
+            <param-value>/WEB-INF/spring/appServlet/elseServlet.xml</param-value>
+        </init-param>
+        <load-on-startup>2</load-on-startup>
+    </servlet>
 
+    <servlet-mapping>
+        <servlet-name>elseServlet</servlet-name>
+        <url-pattern>*.else</url-pattern> 
+    </servlet-mapping>
+	
+	<!-- 서블릿에 별도로 매핑하는 것도 가능하고, 전역적인 설정을 하는 것도 가능
+	서블릿에 매핑한다면 서버 작동 없이 서블릿 자체적인 기능만으로도 작동할 것임
+	다만 웹 애플리케이션 자체가 요청-응답을 처리하는 시스템이기에 대부분의 경우 서버 경유는 필수적. 따라서 굳이 서블릿 내부에 매핑할 필요는 없음 -->
+	<resources mapping="/css/**" location="/css/" />
+	<resources mapping="/assets/**" location="/assets/" />
+	<resources mapping="/js/**" location="/js/" />
+	<resources mapping="/images/**" location="/images/" />
+	<resources mapping="/fonts/**" location="/fonts/" />
+	
 </web-app>

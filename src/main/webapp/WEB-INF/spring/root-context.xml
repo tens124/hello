@@ -1,6 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- 공용 설정 파일. 프로젝트 전체적으로 통용되는, 이를테면 DB와의 소통 같은 내용이 저장되어 있음. 애플리케이션의 전반적인 설정 담당 -->
-<!-- 모든 계층에서 사용되는 설정이라면 본 파일에 두고, 특정 모듈에서만 사용되는 설정이라면 별도의 설정을 두는 것이 유리 -->
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns:context="http://www.springframework.org/schema/context"
@@ -8,6 +6,9 @@
 	xsi:schemaLocation="http://mybatis.org/schema/mybatis-spring http://mybatis.org/schema/mybatis-spring-1.2.xsd
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
+
+<!-- 공용 컨텍스트. 프로젝트 전체적으로 통용되는, 이를테면 DB와의 소통 같은 내용이 빈의 형태로 저장되어 있음. 애플리케이션의 전반적인 설정 담당 -->
+<!-- 모든 계층에서 사용되는 설정이라면 본 파일에 두고, 특정 모듈에서만 사용되는 설정이라면 별도의 설정을 두는 것이 유리 -->
 
 	<!-- 데이터베이스 커넥션 풀 라이브러리 -->
 	<!-- DB 접근 시마다 새로운 연결을 생성하고 종료하는 것은 비용이 큼. HikariCP는 미리 일정 수의 데이터베이스 연결을 만들어 풀에 저장해 두고, 필요할 때 연결을 꺼내 사용하도록 관리 -->
@@ -56,6 +57,23 @@
 			</props>
 		</property>
 	</bean>
+	
+	<!-- 뷰 리졸버. 서블릿 설정에서 루트로 가져옴 -->
+	<bean id="viewResolver"
+		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="prefix" value="/WEB-INF/views/" />
+		<property name="suffix" value=".jsp" />
+	</bean>
+	
+	<!-- NaverLoginBO Class에 대한 Bean설정 추가 -->
+	<bean id="naverLoginBO"
+		class="boss.controller.NaverLoginBO" />
+
+	<!-- 파일 업로드 설정 -->
+	<bean id="multipartResolver"
+		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<property name="maxUploadSize" value="10000000" />
+	</bean>
 
 	<!-- Mybatis에서 dao클래스로 처리 할때는 필요하지만, mapper interface로 처리 할때는 필요 없음. 인터페이스를 통한 통신으로 결합도를 낮추는 쪽이 유리 -->
 	<!-- SqlSessionTemplate 빈은 MyBatis에서 SQL 세션을 관리하는 중요한 객체. 다만 MyBatis mapper 인터페이스를 사용한다면 
@@ -71,6 +89,5 @@
 	<!-- sql문이 담긴 파일에는 <mapper namespace="boss.dao.BucketDao">와 같은 형태로 각 Dao 인터페이스에 담긴 sql문들이 서술되어 있음. 스프링은 해당하는 sql문들을 미리 기록된 이름의 메소드로 제작해 줌 -->
 	<mybatis-spring:scan base-package="boss.dao" />
 	
-
 
 </beans>
