@@ -26,7 +26,7 @@ public class ProductAskBoardController {
 	private ProductAskBoardService service;
 
 	// 문의 작성 페이지로 이동
-	@RequestMapping("productAskBoardInsertForm.do")
+	@RequestMapping("productAskBoardInsertForm.else")
 	public String productAskBoardInsertForm(Model model, String pid, HttpSession session) {
 
 		// 세션 불러오기
@@ -42,7 +42,7 @@ public class ProductAskBoardController {
 	}
 
 	// 문의 insert
-	@RequestMapping("productAskBoardInsertCheck.do")
+	@RequestMapping("productAskBoardInsertCheck.else")
 	public String productAskBoardInsertCheck(Model model, String pid, HttpSession session, AskBoard askboard) {
 		System.out.println("productAskBoardInsertCheck 여기는 왔따.");
 
@@ -78,7 +78,7 @@ public class ProductAskBoardController {
 	}
 
 	// 문의 수정폼 이동
-	@RequestMapping("productAskBoardUpdateForm.do")
+	@RequestMapping("productAskBoardupdateForm.else")
 	public String productAskBoardUpdateForm(Model model, int askid, int pid, AskBoard askboard) {
 		System.out.println("productAskBoardUpdateForm:" + "문의 수정폼 이동");
 

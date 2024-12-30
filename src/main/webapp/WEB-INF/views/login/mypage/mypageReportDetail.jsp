@@ -28,13 +28,13 @@
 			<div class="nav1">
 				<ul>
 					<li><a class="mypage_sidebar" href='#'>메뉴</a></li>
-					<li><a href='mypage.do'>내 주문내역</a></li>
-					<li><a href='cartFormMove.do'>장바구니</a></li>
-					<li><a href='mypageQnA.do'>내가 쓴 QnA</a></li>
-					<li><a href='mypageReview.do'>내가 쓴 Review</a></li>
-					<li><a href='mypageAskBoard.do'>내가 물어본 상품문의</a></li>
-					<li><a href='mypageReport.do'>신고 기록</a></li>
-					<li><a href='updateForm.do'>내 정보 수정</a></li>
+					<li><a href='mypage.else'>내 주문내역</a></li>
+					<li><a href='cartFormMove.else'>장바구니</a></li>
+					<li><a href='mypageQnA.else'>내가 쓴 QnA</a></li>
+					<li><a href='mypageReview.else'>내가 쓴 Review</a></li>
+					<li><a href='mypageAskBoard.else'>내가 물어본 상품문의</a></li>
+					<li><a href='mypageReport.else'>신고 기록</a></li>
+					<li><a href='updateForm.else'>내 정보 수정</a></li>
 					<li><a href='deleteForm.do'>회원 탈퇴</a></li>
 				</ul>
 			</div>

@@ -167,7 +167,7 @@
 
             </table>
             <button type="submit" style="margin-top: 20px;">결제하기</button>
-            <button type="button" onclick="location.href='cartFormMove.do'" style="margin-top: 20px;">취소하기</button>
+            <button type="button" onclick="location.href='cartFormMove.else'" style="margin-top: 20px;">취소하기</button>
             <div class="img_logo">
                <a href="main.do"><img src="./images/logo.png"
                   style="margin-left: 20px; width: 350px"></a>

@@ -69,7 +69,7 @@ public class MasterMemberController {
 	}
 
 	// 관리자 회원정보 수정 폼(입력값 받음)
-	@RequestMapping("masterMemberUpdateForm.do")
+	@RequestMapping("masterMemberupdateForm.else")
 	public String masterMemberUpdateForm(String id, Model model) {
 		Member db = ms.selectOne(id);
 		model.addAttribute("member", db);

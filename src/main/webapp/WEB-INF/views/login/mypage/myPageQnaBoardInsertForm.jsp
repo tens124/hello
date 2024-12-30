@@ -46,7 +46,7 @@ function add(){
 		<script>
 			window.self.close();
 			alert("${msg}");
-			location.href="mypageQnA.do";
+			location.href="mypageQnA.else";
 		</script>
 	</c:if>
 	<c:if test="${result == -1 }">

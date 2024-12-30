@@ -148,9 +148,9 @@
 			<c:if
 				test="${!empty sessionScope.member && sessionScope.member.mEmail == detail.mEmail}">
 				<input type="button" class="boardform_button" value="수정"
-					onClick="location.href='freeBoardDetail.do?fId=${detail.fId}&page=${page}&state=update'">
+					onClick="location.href='freeBoardDetail.else?fId=${detail.fId}&page=${page}&state=update'">
 				<input type="button" class="boardform_button" value="삭제"
-					onClick="location.href='freeBoardDetail.do?fId=${detail.fId}&page=${page}&state=delete'">
+					onClick="location.href='freeBoardDetail.else?fId=${detail.fId}&page=${page}&state=delete'">
 			</c:if>
 			<input type="button" class="boardform_button" value="목록"
 				onClick="location.href='freeBoardList.do?page=${page}'">

@@ -12,7 +12,7 @@
 <c:if test="${result == 1 }">
 	<script type="text/javascript">
 		alert("회원 정보가 수정 되었습니다.");
-		location.href = "mypage.do";
+		location.href = "mypage.else";
 	</script>
 </c:if>
 

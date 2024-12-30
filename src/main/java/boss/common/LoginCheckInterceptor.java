@@ -29,12 +29,8 @@ public class LoginCheckInterceptor implements HandlerInterceptor {
     	
     	System.out.println("인터셉터!");
     	
-        // 세션에서 "member" 속성을 확인 후 객체 생성
-        HttpSession session = request.getSession();
-        Member member = (Member) session.getAttribute("member");
-
         // 세션에 member 객체가 없다면 로그인되지 않은 상태로 간주
-        if (member == null) {
+        if (request.getSession().getAttribute("member") == null) {
             // 로그인 페이지로 리다이렉트
             response.sendRedirect("loginCheck.do");
             return false; // 위에서 새로운 요청(리다이렉트)이 생성됐으니 현재 요청 처리 중지

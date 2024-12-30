@@ -58,7 +58,7 @@
 	}
 
 	function update(a, b, c, d) {
-		location.href = "masterNoticeSearchUpdateForm.do?rnum=" + a + "&mnId="
+		location.href = "masterNoticeSearchupdateForm.else?rnum=" + a + "&mnId="
 				+ b + "&searchtype=" + c + "&keyword=" + d
 				+ "&cntPerPage=${pp.cntPerPage}";
 		event.stopPropagation()

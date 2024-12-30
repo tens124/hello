@@ -45,7 +45,7 @@
 						src="./images/logout.png" style="text-decoration: none"></a>
 					<a href="mypage.else"><img src="./images/my.png"
 						style="text-decoration: none"></a>
-					<a href="cartFormMove.do"><img src="./images/cart.png"
+					<a href="cartFormMove.else"><img src="./images/cart.png"
 						style="text-decoration: none"></a>
 					<a href="masterMain.do"><img src="./images/master.png"
 						style="text-decoration: none"></a>
@@ -65,7 +65,7 @@
 						src="./images/logout.png" style="text-decoration: none"></a>
 					<a href="mypage.else"><img src="./images/my.png"
 						style="text-decoration: none"></a>
-					<a href="cartFormMove.do"><img src="./images/cart.png"
+					<a href="cartFormMove.else"><img src="./images/cart.png"
 						style="text-decoration: none"></a>
 					<br>
 				${sessionScope.member.mName }님 환영합니다.

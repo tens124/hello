@@ -18,7 +18,7 @@
 	<c:if test="${result == 1 }">
 		<script type="text/javascript">
 			alert("글 수정 성공");
-			location.href = "freeBoardDetail.do?fId=${fId}&page=${page}&state=detail";
+			location.href = "freeBoardDetail.else?fId=${fId}&page=${page}&state=detail";
 		</script>
 	</c:if>
 	<c:if test="${result <= 0 }">
@@ -44,7 +44,7 @@
 <body>
 <!-- 전체 div시작 -->
 <div class="div_insertform">
-  <form action="freeBoardUpdateok.do" method="post" onSubmit="return board_edit_check()" enctype="multipart/form-data">
+  <form action="freeBoardUpdateok.else" method="post" onSubmit="return board_edit_check()" enctype="multipart/form-data">
   <input type="hidden" name="fId" value="${detail.fId}"/>
   <input type="hidden" name="page" value="${page}"/>
    <!-- 비회원 글삭제 방지를 위한 id값설정, freeboard.js -->

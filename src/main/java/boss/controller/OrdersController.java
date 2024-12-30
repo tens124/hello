@@ -106,7 +106,7 @@ public class OrdersController {
 	/*
 	 * 결제 폼 이동 메소드
 	 */
-	@RequestMapping("moveOrdersForm.do")
+	@RequestMapping("moveOrdersForm.else")
 	public String moveOrdersForm(Bucket bucket, String quantity,String bid, String pid, HttpServletRequest request, HttpSession session,
 			Model model) {
 		System.out.println("moveOrdersForm");
@@ -184,7 +184,7 @@ public class OrdersController {
 	 * 주문 정보 db 저장
 	 */
 	@ResponseBody
-	@RequestMapping("orderResult.do")
+	@RequestMapping("orderResult.else")
 	public String orderResult(String mEmail, String bid, String amountCount,
 			Orders orders, String pid, String bcount,String omessage, 
 			HttpSession session,@RequestParam Map<String, List<String>> bidList) {
@@ -246,7 +246,7 @@ public class OrdersController {
 	}
 	
 	@ResponseBody
-	@RequestMapping("oneOrderResult.do")
+	@RequestMapping("oneOrderResult.else")
 	public String oneOrderResult(String mEmail, String amountCount,Orders orders, String pid,String omessage,HttpSession session) {
 		System.out.println("단일 결제");
 		Map<String, Object> map = new HashMap<String, Object>();

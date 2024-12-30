@@ -21,7 +21,7 @@
 <script>
 	function moveToCart() {
 		var quantity = document.getElementById('bucketCount').value;
-		window.location.href = 'cartFormMove.do?pid=${product.pid}&quantity='
+		window.location.href = 'cartFormMove.else?pid=${product.pid}&quantity='
 				+ quantity;
 	}
 </script>
@@ -29,7 +29,7 @@
 <script>
 	function moveOrdersForm() {
 		var quantity = document.getElementById('bucketCount').value;
-		location.href = 'moveOrdersForm.do?pid=${product.pid}&quantity='
+		location.href = 'moveOrdersForm.else?pid=${product.pid}&quantity='
 				+ quantity;
 	}
 </script>
@@ -226,7 +226,7 @@
 		<!-- 비로그인일 때 리뷰 작성 버튼이 안보임 -->
 		<c:if test="${member != null }">
 			<button type="button" class="button1"
-				onclick="location.href='productReviewInsertForm.do?pid=${pid}'">리뷰
+				onclick="location.href='productReviewInsertForm.else?pid=${pid}'">리뷰
 				작성</button>
 		</c:if>
 
@@ -299,7 +299,7 @@
 			</div>
 			<c:if test="${member != null }">
 				<button type="button" class="askbutton1"
-					onclick="location.href='productAskBoardInsertForm.do?pid=${pid}'">문의
+					onclick="location.href='productAskBoardInsertForm.else?pid=${pid}'">문의
 					작성</button>
 			</c:if>
 		</div>

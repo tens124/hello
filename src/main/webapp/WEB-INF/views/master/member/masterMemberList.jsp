@@ -89,7 +89,7 @@
 
 						<td>
 							<button type="button"
-								onclick="location.href='masterMemberUpdateForm.do?id=${member.mEmail}'">수정</button>
+								onclick="location.href='masterMemberupdateForm.else?id=${member.mEmail}'">수정</button>
 							<button type="button"
 								onclick="location.href='masterMemberDelete.do?id=${member.mEmail}' ">삭제</button>
 						</td>

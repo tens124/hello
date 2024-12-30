@@ -11,12 +11,12 @@
 	<c:if test="${notBucket == '1'}">
 		<script>
 		alert('체크된 상품이 없습니다.');
-		location.href='cartFormMove.do';
+		location.href='cartFormMove.else';
 		</script>
 	</c:if>
 	<script>
 		alert('${msg}');
-		location.href="cartFormMove.do";
+		location.href="cartFormMove.else";
 	</script>
 </body>
 </html>

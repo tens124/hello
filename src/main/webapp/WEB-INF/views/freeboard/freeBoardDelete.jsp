@@ -33,7 +33,7 @@
 <body>
 <!-- 전체 div시작 -->
 <div class="div_insertform">
-  <form action="freeBoardDeleteok.do" method="post" onSubmit="return board_del_check()">
+  <form action="freeBoardDeleteok.else" method="post" onSubmit="return board_del_check()">
   <input type="hidden" name="fId" value="${detail.fId}"/>
   <input type="hidden" name="page" value="${page}"/>
   <!-- 비회원 글삭제 방지를 위한 id값설정 -->

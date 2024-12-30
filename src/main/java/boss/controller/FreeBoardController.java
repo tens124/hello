@@ -159,7 +159,7 @@ public class FreeBoardController {
 	}
 
 	// 조회수증가, 게시판 상세페이지, 수정폼,삭제폼에 답변폼 내용 출력
-	@RequestMapping("freeBoardDetail.do")
+	@RequestMapping("freeBoardDetail.else")
 	public String freeBoardUpdate(@RequestParam("fId") int fId, @RequestParam("page") String page,
 			@RequestParam("state") String state,HttpSession session , Member member, Model model) {
 
@@ -175,11 +175,9 @@ public class FreeBoardController {
 		Likes like = new Likes();
 		like.setLikeDrop("N");
 		
-		if(session.getAttribute("member") != null) {
 			member = (Member) session.getAttribute("member");
 			String mEmail = member.getmEmail();
 			like = lservice.findLike(fId, mEmail);
-		}
 		
 		//좋아요 갯수
 		int countLike = lservice.countLike(fId);
@@ -201,7 +199,7 @@ public class FreeBoardController {
 	}
 
 	// 글 수정
-	@RequestMapping("freeBoardUpdateok.do")
+	@RequestMapping("freeBoardUpdateok.else")
 	public String freeBoardUpdateok(@RequestParam("fPassword") String fPassword,
 			                        @ModelAttribute FreeBoard board, 
 			                        @RequestParam("fId") int fId,
@@ -304,7 +302,7 @@ public class FreeBoardController {
 	}
 
 	// 글 삭제
-	@RequestMapping("freeBoardDeleteok.do")
+	@RequestMapping("freeBoardDeleteok.else")
 	public String freeBoardDeleteok(@RequestParam("fPassword") String fPassword,
 			                         @RequestParam("fId") int fId,
 			                        @RequestParam("page") String page,

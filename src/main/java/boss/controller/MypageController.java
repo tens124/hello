@@ -60,7 +60,7 @@ public class MypageController {
 	}
 	
 	// 주문내역
-	@RequestMapping("mypageOrderDetail.do")
+	@RequestMapping("mypageOrderDetail.else")
 	public String mypageOrderDetail(String oid,HttpSession session,Model model) {
 		
 		Member member = (Member) session.getAttribute("member");
@@ -115,7 +115,7 @@ public class MypageController {
 	}
 	
 	// 리뷰 페이지 이동
-	@RequestMapping("mypageReview.do")
+	@RequestMapping("mypageReview.else")
 	public String mypageReview(HttpSession session, Model model) {
 
 		// 세션 얻어오기
@@ -129,7 +129,7 @@ public class MypageController {
 		return "login/mypage/mypageReview";
 	}
 
-	@RequestMapping("mypageQnA.do")
+	@RequestMapping("mypageQnA.else")
 	//페이징 처리 해야 함. 하....rownum과 pagepgm 둘 다 필요....
 	public String mypageQnA(PagePgm pp, 
 			@RequestParam(value = "nowPage", required = false) String nowPage,
@@ -274,7 +274,7 @@ public class MypageController {
 		}
 
 		model.addAttribute("board", board);
-		return "redirect:/mypageQnA.do";
+		return "redirect:/mypageQnA.else";
 		//일단은 이렇게. 팝업창에서 작성 후 유효성검사 통과시 팝업창 닫고 재요청/불통시 주의 문구 출력 후 다시 폼으로
 	}
 	
@@ -330,7 +330,7 @@ public class MypageController {
 //			model.addAttribute("pp", pp);
 //			model.addAttribute("mnId", mnId);
 //			model.addAttribute("nowPage", nowPage);
-			return "redirect:/mypageQnA.do";
+			return "redirect:/mypageQnA.else";
 		}
 
 	// 리뷰 삭제
@@ -374,7 +374,7 @@ public class MypageController {
 	}
 	
 	// my ask폼으로 이동
-	@RequestMapping("mypageAskBoard.do")
+	@RequestMapping("mypageAskBoard.else")
 	public String mypageAskBoard(HttpSession session,Model model) {
 		
 		Member member = (Member) session.getAttribute("member");
@@ -389,7 +389,7 @@ public class MypageController {
 	}
 	
 	// mypage 신고폼 이동
-	@RequestMapping("mypageReport.do")
+	@RequestMapping("mypageReport.else")
 	public String mypageReport(HttpSession session, Model model) {
 		
 		Member member = (Member) session.getAttribute("member");

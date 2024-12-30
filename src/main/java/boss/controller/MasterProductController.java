@@ -227,7 +227,7 @@ public class MasterProductController {
    /*
     * 상품 수정 페이지 이동 메소드
     */
-   @RequestMapping("masterProductUpdateForm.do")
+   @RequestMapping("masterProductupdateForm.else")
    public String masterProductUpdateForm(String id, Model model) {
 
       // 상품 상세정보 구하기
@@ -268,7 +268,7 @@ public class MasterProductController {
       model.addAttribute("pid", id);
       model.addAttribute("id", id);
 
-      return "redirect:/masterProductUpdateForm.do";
+      return "redirect:/masterProductupdateForm.else";
    }
 
    /*

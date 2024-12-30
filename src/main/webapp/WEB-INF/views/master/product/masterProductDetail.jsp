@@ -53,7 +53,7 @@
 				<td>${product.pdrop }</td>
 				<td>
 					<button type="button"
-						onclick="location.href='masterProductUpdateForm.do?id=${product.pid}'">수정</button>
+						onclick="location.href='masterProductupdateForm.else?id=${product.pid}'">수정</button>
 					<button type="button"
 						onclick="alert('삭제하시겠습니까?'); location.href='masterProductDelete.do?id=${product.pid}'">삭제</button>
 				</td>

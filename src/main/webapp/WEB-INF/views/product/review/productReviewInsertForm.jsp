@@ -17,7 +17,7 @@
 <body>
 	<div class="insert_main">
 		<h1 class="" align="center">리뷰 작성</h1>
-		<form method="post" action="productReviewcheck.do" enctype="multipart/form-data">
+		<form method="post" action="productReviewcheck.else" enctype="multipart/form-data">
 
 
 			<table class="insert_table">

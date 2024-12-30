@@ -32,7 +32,7 @@ public class BucketController {
 	/*
 	 * 장바구니 폼 이동 메소드
 	 */
-	@RequestMapping("cartFormMove.do")
+	@RequestMapping("cartFormMove.else")
 	public String cartFormMove(HttpSession session,
 			@RequestParam(value = "pid", required = false, defaultValue = "0") String pid, String quantity,Model model) {
 		
@@ -110,7 +110,7 @@ public class BucketController {
 			return "master/product/masterMoveProductList";
 		}
 		
-		return "redirect:/cartFormMove.do";
+		return "redirect:/cartFormMove.else";
 	}
 	
 }

@@ -79,7 +79,7 @@
 		     };
 			        
 			 $.ajax({
-				url: 'oneOrderResult.do',
+				url: 'oneorderResult.else',
 				method: 'POST',
 				//contentType: 'application/json',
 				data: toSend,
@@ -108,7 +108,7 @@
 		requestPay();
 	} else{
 		alert('결제가 취소 됩니다.');
-		location.href='cartFormMove.do';
+		location.href='cartFormMove.else';
 	}
 </script>
 

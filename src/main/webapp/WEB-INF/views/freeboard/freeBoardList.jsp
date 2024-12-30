@@ -147,7 +147,7 @@
 
 							<!-- 제목 출력 부분 -->
 							<td><a
-								href="freeBoardDetail.do?page=${pp.currentPage}&fId=${board.fId}&state=detail">
+								href="freeBoardDetail.else?page=${pp.currentPage}&fId=${board.fId}&state=detail">
 									${board.fTitle} <!-- 조회수 30 초과 인기글 표시 --> <c:if
 										test="${board.fReadCount > 30 }">
 										<img alt="" src="images/hot.gif">

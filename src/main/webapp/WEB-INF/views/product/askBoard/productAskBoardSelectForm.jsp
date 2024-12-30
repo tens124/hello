@@ -46,7 +46,7 @@ function deleteAsk(askid,pid) {
 	<div class="Ask_insert">
 		<h1 class="" align="center">문의 상세</h1>
 		<form method="post"
-			action="productAskBoardUpdateForm.do?askid=${askboard.askid }&pid=${askboard.pid}">
+			action="productAskBoardupdateForm.else?askid=${askboard.askid }&pid=${askboard.pid}">
 
 			<table class="askinsert_table">
 				<tr>

@@ -18,7 +18,7 @@
 <body>
 	<div class="insert_main">
 		<h1 class="" align="center">리뷰 수정</h1>
-		<form method="post" action="productReviewUpdateCheck.do" enctype="multipart/form-data">
+		<form method="post" action="productReviewUpdateCheck.else" enctype="multipart/form-data">
 		<input type="hidden" name="rid" value="${review.rid }">
 
 			<table class="insert_table">

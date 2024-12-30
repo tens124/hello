@@ -93,7 +93,7 @@ public class MainController {
 	/*
 	 * 메인 이미지 수정 메소드
 	 */
-	@RequestMapping("masterImageUpdateForm.do")
+	@RequestMapping("masterImageupdateForm.else")
 	public String masterImageUpdateForm(String id, String block, Model model) {
 
 		Product product = service.selectOne(id);

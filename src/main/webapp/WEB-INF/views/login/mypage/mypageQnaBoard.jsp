@@ -80,13 +80,13 @@ width: 100%;
 	<c:if test="${member != null }">
 		<ul>
      <li><a class="mypage_sidebar" href='#'>메뉴</a></li>
-     <li><a href='mypage.do'>내 주문내역</a></li>
-     <li><a href='cartFormMove.do'>장바구니</a></li>
-     <li><a href='mypageQnA.do'>내가 쓴 QnA</a></li>
-     <li><a href='mypageReview.do'>내가 쓴 Review</a></li>
-     <li><a href='mypageAskBoard.do'>내가 물어본 상품문의</a></li>
-     <li><a href='mypageReport.do'>신고 기록</a></li>
-     <li><a href='updateForm.do'>내 정보 수정</a></li>
+     <li><a href='mypage.else'>내 주문내역</a></li>
+     <li><a href='cartFormMove.else'>장바구니</a></li>
+     <li><a href='mypageQnA.else'>내가 쓴 QnA</a></li>
+     <li><a href='mypageReview.else'>내가 쓴 Review</a></li>
+     <li><a href='mypageAskBoard.else'>내가 물어본 상품문의</a></li>
+     <li><a href='mypageReport.else'>신고 기록</a></li>
+     <li><a href='updateForm.else'>내 정보 수정</a></li>
      <li><a href='deleteForm.do'>회원 탈퇴</a></li>
     </ul>
 
@@ -159,7 +159,7 @@ width: 100%;
 		<div align="center">
 			<c:if test="${pp.startPage != 1 }">
 				<a style="text-decoration: none; color: deeppink"
-					href="./mypageQnA.do?nowPage=${pp.startPage - 1 }&cntPerPage=${pp.cntPerPage}">
+					href="./mypageQnA.else?nowPage=${pp.startPage - 1 }&cntPerPage=${pp.cntPerPage}">
 					<- </a>
 			</c:if>
 			<c:forEach begin="${pp.startPage }" end="${pp.endPage }" var="p">
@@ -169,13 +169,13 @@ width: 100%;
 					</c:when>
 					<c:when test="${p != pp.nowPage }">
 						<a style="text-decoration: none; color: deeppink"
-							href="./mypageQnA.do?nowPage=${p }&cntPerPage=${pp.cntPerPage}">${p }</a>
+							href="./mypageQnA.else?nowPage=${p }&cntPerPage=${pp.cntPerPage}">${p }</a>
 					</c:when>
 				</c:choose>
 			</c:forEach>
 			<c:if test="${pp.endPage != pp.lastPage}">
 				<a style="text-decoration: none; color: deeppink"
-					href="./mypageQnA.do?nowPage=${pp.endPage+1 }&cntPerPage=${pp.cntPerPage}">
+					href="./mypageQnA.else?nowPage=${pp.endPage+1 }&cntPerPage=${pp.cntPerPage}">
 					-> </a>
 			</c:if>
 		</div>

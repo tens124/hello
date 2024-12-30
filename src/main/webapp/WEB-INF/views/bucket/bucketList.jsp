@@ -25,7 +25,7 @@
 <script>
 	$(document).ready(function() {
 		$("#payClick").click(function() {
-			$("form").attr("action", "moveOrdersForm.do");
+			$("form").attr("action", "moveOrdersForm.else");
 			$("form")[0].submit(); // form 요소의 submit() 함수를 호출하여 이벤트를 발생시킴
 		});
 
@@ -86,7 +86,7 @@
 								</td>
 								<td><span class="price">${bucket.bprice * bucket.bcount}원</span><br>
 									<button type="button" class="cart__list__orderbtn"
-										onclick="location.href='moveOrdersForm.do?bid=${bucket.bid }&pid=${bucket.pid }'">주문하기</button>
+										onclick="location.href='moveOrdersForm.else?bid=${bucket.bid }&pid=${bucket.pid }'">주문하기</button>
 									<button type="button" class="cart__list__orderbtn"
 										onclick="location.href='cartListDelete.do?bid=${bucket.bid}'">삭제하기</button>
 								</td>

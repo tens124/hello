@@ -275,7 +275,7 @@ public class MemberController {
 	}
 	
 	// 회원수정 폼 이동 (update)
-	@RequestMapping("updateForm.do")
+	@RequestMapping("updateForm.else")
 	public String updateForm(HttpSession session, Model model) {	//세션, 즉 현재 로그인한 유저의 정보를 가져옴
 		
 		// 세션에 있는 Member 값 구해오기

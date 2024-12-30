@@ -45,7 +45,7 @@
 					<td>${qnaBoard.qnadrop}</td>
 					<td>
 						<%-- <button type="button"
-							onclick="location.href='masterReviewUpdateForm.do?rid=${review.rid}'">수정</button> --%>
+							onclick="location.href='masterReviewupdateForm.else?rid=${review.rid}'">수정</button> --%>
 						<button type="button"
 							onclick="location.href='masterQnaBoardDelete.do?id=${qnaBoard.qid}' ">삭제</button>
 					</td>

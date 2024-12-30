@@ -81,14 +81,14 @@
 		     };
 			        
 			 $.ajax({
-				url: 'orderResult.do',
+				url: 'orderResult.else',
 				method: 'POST',
 				//contentType: 'application/json',
 				data: toSend,
 				success: function(map){
 					
 					alert('구매 완료');
-					location.href='cartFormMove.do';
+					location.href='cartFormMove.else';
 					
 					},
 							 
@@ -96,7 +96,7 @@
              
 		} else {
             alert('결제실패');
-            location.href='cartFormMove.do';
+            location.href='cartFormMove.else';
          }
       });
    }
@@ -110,7 +110,7 @@
 		requestPay();
 	} else{
 		alert('결제가 취소 됩니다.');
-		location.href='cartFormMove.do';
+		location.href='cartFormMove.else';
 	}
 </script>
 

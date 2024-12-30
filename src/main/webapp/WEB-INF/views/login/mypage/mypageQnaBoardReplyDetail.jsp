@@ -67,7 +67,7 @@
 		if(id != 0){
 	%>
 	<button type="button" class="qna_btn" 
-	onclick="location.href='mypageQnA.do?nowPage=${Integer.toString(Math.floor((reply.rnum-1)/pp.cntPerPage)+1)}'">목록으로</button>
+	onclick="location.href='mypageQnA.else?nowPage=${Integer.toString(Math.floor((reply.rnum-1)/pp.cntPerPage)+1)}'">목록으로</button>
 	<%
 		}
 	%>

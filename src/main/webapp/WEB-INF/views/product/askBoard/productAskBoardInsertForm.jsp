@@ -21,7 +21,7 @@
 <body>
 	<div class="Ask_insert">
 		<h1 class="" align="center">문의 작성</h1>
-		<form method="post" action="productAskBoardInsertCheck.do">
+		<form method="post" action="productAskBoardInsertCheck.else">
 
 
 			<table class="askinsert_table">

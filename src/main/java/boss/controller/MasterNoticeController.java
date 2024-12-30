@@ -105,7 +105,7 @@ public class MasterNoticeController {
 	}
 
 	// 글 수정 폼
-	@RequestMapping("masterNoticeUpdateForm.do")
+	@RequestMapping("masterNoticeupdateForm.else")
 	public String masterNoticeUpdateForm(PagePgm pp, Model model, MasterNotice mn,
 			@RequestParam(value = "nowPage", required = false) String nowPage,
 			@RequestParam(value = "cntPerPage", required = false) String cntPerPage) {
@@ -331,7 +331,7 @@ public class MasterNoticeController {
 	}
 		
 		// 검색 시 글 수정 폼
-		@RequestMapping("masterNoticeSearchUpdateForm.do")
+		@RequestMapping("masterNoticeSearchupdateForm.else")
 		public String masterNoticeSearchUpdateForm(PagePgm pp, Model model, MasterNotice mn,
 				@RequestParam(value = "nowPage", required = false) String nowPage,
 				@RequestParam(value = "cntPerPage", required = false) String cntPerPage) {

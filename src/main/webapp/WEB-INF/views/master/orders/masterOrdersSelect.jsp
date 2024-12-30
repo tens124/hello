@@ -182,7 +182,7 @@ function ajax_change(status, odid, oid) {
 						      </script></td>
 						<td>
 							<button type="button" class="putsub2"
-								onclick="location.href='masterProductUpdateForm.do?id=${o.PID}'">상품수정</button>
+								onclick="location.href='masterProductupdateForm.else?id=${o.PID}'">상품수정</button>
 							<select class="select-Dtype"
 							onchange="ajax_change(this,${o.ODID},${o.OID })"
 							style="color: black; background-color: gray; font-size: 15px">

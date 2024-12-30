@@ -72,7 +72,7 @@
 	}
     
     function update(a,b){
-    	location.href="masterNoticeUpdateForm.do?rnum="+a+"&mnId="+b+"&cntPerPage=${pp.cntPerPage}"
+    	location.href="masterNoticeupdateForm.else?rnum="+a+"&mnId="+b+"&cntPerPage=${pp.cntPerPage}"
     	event.stopPropagation()
     }
 </script>

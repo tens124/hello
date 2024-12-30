@@ -143,7 +143,7 @@ public class ProductDetailController {
 	}
 
 	// 리뷰 작성 페이지 이동
-	@RequestMapping("productReviewInsertForm.do")
+	@RequestMapping("productReviewInsertForm.else")
 	public String productReviewInsertForm(String pid, Model model, HttpSession session) {
 		System.out.println("productReviewInsertForm");
 
@@ -165,7 +165,7 @@ public class ProductDetailController {
 	}
 
 	// 리뷰 등록
-	@RequestMapping(value = "productReviewcheck.do", method = { RequestMethod.POST, RequestMethod.GET })
+	@RequestMapping(value = "productReviewcheck.else", method = { RequestMethod.POST, RequestMethod.GET })
 	public String prInsert(Model model, Review review, HttpSession session, int pid,HttpServletRequest request,
 			@RequestParam(value = "rimage1", required = false) MultipartFile mfile) throws Exception {
 
@@ -304,7 +304,7 @@ public class ProductDetailController {
 	}
 
 	// 리뷰 수정폼으로 이동
-	@RequestMapping("productReviewUpdateForm.do")
+	@RequestMapping("productReviewUpdateForm.else")
 	public String productReviewUpdateForm(int pid, Model model, Review review, int rid, HttpSession session) {
 		System.out.println("productReviewUpdateForm :" + "수정");
 
@@ -340,7 +340,7 @@ public class ProductDetailController {
 	}
 
 	// 리뷰 수정
-	@RequestMapping(value = "productReviewUpdateCheck.do", method = { RequestMethod.POST, RequestMethod.GET })
+	@RequestMapping(value = "productReviewUpdateCheck.else", method = { RequestMethod.POST, RequestMethod.GET })
 	public String productReviewUpdateCheck(Model model, Review review, HttpSession session,HttpServletRequest request,
 			@RequestParam(value = "rimage1", required = false) MultipartFile mfile) throws Exception {
 		
