@@ -11,10 +11,10 @@ import javax.servlet.http.HttpSession;
 
 public class LoginCheckInterceptor implements HandlerInterceptor {
 	
-	//Spring에서는 HandlerInterceptorAdapter라는 추상 클래스가 기본 제공됨 
-	//이 클래스는 HandlerInterceptor 인터페이스를 구현하고 있으며, 그 안에 preHandle, postHandle, afterCompletion 메소드가 기본적으로 구현되어 있다
-	//따라서 이 클래스가 HandlerInterceptor를 상속하면서 preHandle 메소드만을 구현하고 있음에도 오류가 발생하지 않는 것
-	//이처럼 스프링은 인터페이스에 대응되는 다양한 기본클래스가 존재하여 인터페이스 사용의 부담을 덜어주고 있다
+	//자바에서는 default 예약어를 통해 디폴트 메소드를 선언 가능
+	//디폴트 메소드는 기본 구현 메소드가 존재하기에, 구현을 위한 구현메소드를 작성하지 않아도 상속 클래스를 생성 가능
+	//해당 예약어를 통해 인터페이스에도 메소드의 내용을 추가하는 것이 가능해졌음
+	//HandlerInterceptor 인터페이스의 메소드들도 디폴트 메소드. 따라서 사용자가 필요한 메소드만 구현하면 됨
 
     @Override
     public boolean preHandle(HttpServletRequest request, 		//요청에 반응하기 위함

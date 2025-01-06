@@ -8,7 +8,10 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Required;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.PropertySource;
+import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,12 +24,16 @@ import boss.model.Product;
 import boss.service.MasterProductService;
 
 @Controller
+@PropertySource("classpath:properties/oauth.properties")
 public class MainController {
 
 	@Autowired
 	private MasterProductService service;
 	
-
+	@Value("${CLIENT_ID}")
+	String id;
+	
+	
 	//메인 페이지 이동 메소드. main.do라는 요청이 발생되면 이 메소드가 호출됨
 	@RequestMapping(value = "main.do")
 	public String main(Model model, @RequestParam(value = "block", required = false, defaultValue = "1") String block)
@@ -35,7 +42,9 @@ public class MainController {
 	//url에 block이라는 요소가 포함되어 전달되어 오면, 해당 요소의 값을 block 변수에 할당할 값으로 지정. 필수값은 아니며, 만약 block 요소가 존재하지 않는다면 기본값으로 "1"을 할당
 	//block은 메인에 걸릴 대표상품들을 위한 변수!
 			throws Exception {
-
+		
+		System.out.println(id);
+		
 		//MainImage는 DTO
 		// 초기값 뿌려줌
 		//mainImageList 맵은 이름과 DB데이터를 함께 보관하는 듯?

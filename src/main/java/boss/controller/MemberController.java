@@ -92,26 +92,34 @@ public class MemberController {
 	public String login(Model model, HttpSession session) {		//세션은 서버에 접속한 특정 클라이언트의 정보. 로그인한 유저에 국한된 내용이 아님
 		/* 네이버아이디로 인증 URL을 생성하기 위하여 naverLoginBO클래스의 getAuthorizationUrl메소드 호출 */
 		String naverAuthUrl = naverLoginBO.getAuthorizationUrl(session);
-		// https://nid.naver.com/oauth2.0/authorize?response_type=code&client_id=mo1HJXGXT3n7A3XV59QM&
-		// redirect_uri=http%3A%2F%2F211.63.89.90%3A8090%2Flogin_project%2Fcallback&state=e68c269c-5ba9-4c31-85da-54c16c658125
+		//https://nid.naver.com/oauth2.0/authorize?			https://nid.naver.com/oauth2.0/authorize라는 요청에 변수들을 같이 보내서 네이버 로그인을 요청
+		//response_type=code&				인증 과정에 대한 내부 구분값. code 고정
+		//client_id=mo1HJXGXT3n7A3XV59QM&	클라이언트 아이디. 네이버에서 발급받은 값
+		//redirect_uri=http%3A%2F%2F211.63.89.90%3A8090%2Flogin_project%2Fcallback&		로그인 시 넘어갈 주소값
+		//state=e68c269c-5ba9-4c31-85da-54c16c658125	애플리케이션에서 생성한 상태 토큰값. URL 인코딩을 적용한 값을 사용. 요청 위조 공격 방지용
 
 		System.out.println("네이버:" + naverAuthUrl);
 		// 네이버
-		model.addAttribute("url", naverAuthUrl);
+		model.addAttribute("url", naverAuthUrl);		//생성된 url을 url이라는 이름으로 공유
 
 		return "login/LoginForm";
 	}
 
 	// 네이버 로그인 성공시 callback호출 메소드
 	@RequestMapping(value = "/callback.do", method = { RequestMethod.GET, RequestMethod.POST })
-	public String callback(Model model, @RequestParam String code, @RequestParam String state, HttpSession session,
-			Member member) throws Exception {
-//      public String callback(Model model, @RequestParam String code, @RequestParam String state, HttpSession session) throws IOException, ParseException {
+	public String callback(Model model, 
+						   @RequestParam String code, 		//네이버 로그인 인증에 성공하면 반환받는 인증 코드. 접근 토큰 발급에 사용
+						   @RequestParam String state, 		//앞에서 생성된 난수값. 비교를 통해 인증 검사
+						   									//이외에도 error와 error_description 변수가 반환됨. 저장을 따로 할 필요는 없음
+						   HttpSession session,
+						   Member member) throws Exception {
 
 		System.out.println("여기는 callback");
+		System.out.println(code);
 
-		OAuth2AccessToken oauthToken;
+		OAuth2AccessToken oauthToken;		//접근 토큰 변수. OAuth2.0 형식
 		oauthToken = naverLoginBO.getAccessToken(session, code, state);
+		//전달된 code와 state, 현재 세션을 조합해 인증토큰을 생성
 
 		// 1. 로그인 사용자 정보를 읽어온다.
 		apiResult = naverLoginBO.getUserProfile(oauthToken);

@@ -54,12 +54,14 @@ $(document).ready(function () {
          <input type="button" value="회원가입" onClick="location.href='insertForm.do' " name = "btn" id = "btn">
              <br>
       </form>
+      		<!-- 카카오 로그인 버튼 -->
          <a href="https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=45b48fcc29ad5a368b013958e9976afe&redirect_uri=http://ec2-3-25-94-162.ap-southeast-2.compute.amazonaws.com/kakaologin.do&response_type=code">
             <img src="./resources/login_image/kakao_login.png">
          </a> 
          <br>
          <br> 
          
+         <!-- 네이버 로그인 버튼 -->
          <a href="${url }"> 
             <img src="./resources/login_image/naver_login.png" width="183" height="45" alt="Naver로그인">
          </a>
