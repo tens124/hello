@@ -3,6 +3,7 @@ package boss.model;
 import boss.common.Search;
 
 public class Category extends Search {
+//필요 없는 DTO일 듯. 컨트롤러와 서비스를 통합한 데서 발생한 오류
 
 	private int newStartRow; // SQL쿼리에 쓸 start, end
 	private int newEndRow;  //SQL쿼리에 쓸 end

@@ -24,14 +24,10 @@ import boss.model.Product;
 import boss.service.MasterProductService;
 
 @Controller
-@PropertySource("classpath:properties/oauth.properties")
 public class MainController {
 
 	@Autowired
 	private MasterProductService service;
-	
-	@Value("${CLIENT_ID}")
-	String id;
 	
 	
 	//메인 페이지 이동 메소드. main.do라는 요청이 발생되면 이 메소드가 호출됨
@@ -43,7 +39,6 @@ public class MainController {
 	//block은 메인에 걸릴 대표상품들을 위한 변수!
 			throws Exception {
 		
-		System.out.println(id);
 		
 		//MainImage는 DTO
 		// 초기값 뿌려줌

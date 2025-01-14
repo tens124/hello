@@ -115,7 +115,7 @@
 			<div class="inner">
 				<header align="left">
 
-					<h1>${param.newCid }</h1>
+					<h1>${category.newCid }</h1>
 					<br>
 				</header>
 
@@ -153,7 +153,7 @@
 			<div align="center">
 				<c:if test="${pp.startPage != 1 }">
 					<a style="text-decoration: none; color: deeppink"
-						href="./categorySearch.do?newCid=${cid }&nowPage=${pp.startPage - 1 }&cntPerPage=${pp.cntPerPage}&keyword=${category.keyword}">
+						href="./categorySearch.do?newCid=${category.newCid }&nowPage=${pp.startPage - 1 }&cntPerPage=${pp.cntPerPage}&keyword=${category.keyword}">
 						<- </a>
 				</c:if>
 				<c:forEach begin="${pp.startPage }" end="${pp.endPage }" var="p">
@@ -163,13 +163,13 @@
 						</c:when>
 						<c:when test="${p != pp.nowPage }">
 							<a style="text-decoration: none; color: deeppink"
-								href="./categorySearch.do?newCid=${cid }&nowPage=${p }&cntPerPage=${pp.cntPerPage}&keyword=${category.keyword}">${p }</a>
+								href="./categorySearch.do?newCid=${category.newCid }&nowPage=${p }&cntPerPage=${pp.cntPerPage}&keyword=${category.keyword}">${p }</a>
 						</c:when>
 					</c:choose>
 				</c:forEach>
 				<c:if test="${pp.endPage != pp.lastPage}">
 					<a style="text-decoration: none; color: deeppink"
-						href="./categorySearch.do?newCid=${cid }&nowPage=${pp.endPage+1 }&cntPerPage=${pp.cntPerPage}&keyword=${category.keyword}">
+						href="./categorySearch.do?newCid=${category.newCid }&nowPage=${pp.endPage+1 }&cntPerPage=${pp.cntPerPage}&keyword=${category.keyword}">
 						-> </a>
 				</c:if>
 			</div>

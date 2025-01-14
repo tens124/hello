@@ -1,6 +1,7 @@
 package boss.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
@@ -22,5 +23,7 @@ public interface CategoryDao {
 	List<String> selectcid();
 
 	Product samplecategory(String cid);
+
+	List<Product> categoryList1(Map<String, Object> map);
 
 }
