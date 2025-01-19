@@ -32,13 +32,13 @@ h1 {
 		}
 		if (window.event.keyCode == 13) {
 			// 엔터키가 눌렸을 때
-			location.href = "allSearch.do?keyword=" + s;
+			location.href = "product.do?keyword=" + s;
 		}
 	}
 	function selChange() {
 
 		var sel = document.getElementById('cntPerPage').value;
-		location.href = "category.do?nowPage=${pp.nowPage}&newCid=${category.newCid}&cntPerPage="
+		location.href = "product.do?nowPage=${pp.nowPage}&newCid=${category.newCid}&cntPerPage="
 				+ sel;
 	}
 </script>
@@ -85,7 +85,7 @@ a {
 		<nav id="menu">
 			<h2>Menu</h2>
 			<ul>
-				<li><a href="category.do" style="text-decoration: none">카테고리</a></li>
+				<li><a href="product.do" style="text-decoration: none">카테고리</a></li>
 				<br>
 				<li><a href="freeBoardList.do" style="text-decoration: none">커뮤니티</a></li>
 				<br>
@@ -105,7 +105,7 @@ a {
 					<article class="style1">
 
 						<h1>
-							<a href="category.do?newCid=${s.cid }">${s.cid} </a>
+							<a href="product.do?newCid=${s.cid }">${s.cid} </a>
 							<!-- 현재 sample에는 product DTO가 담겨 있음. 
 							하지만, sample에 내용을 삽입하는 코드는 해당 카테고리명으로 검색한 결과를 삽입함
 							즉, 상품 테이블에 해당 카테고리가 포함된 상품이 없다면 상품 정보 또한 존재하지 않는다
@@ -122,10 +122,6 @@ a {
 							<span class="image"> <img src="images/${s.pimage}" alt=""
 								height="450">
 							</span>
-							<h2>${s.pname }</h2>
-							<div class="content">
-								<p>${s.pcontent }</p>
-							</div>
 						</c:if>
 
 					</article>

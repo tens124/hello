@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="boss.dao.ProductDao">
+
+	<select id="count" parameterType="Category" resultType="int">
+		SELECT COUNT(*) FROM product
+		<where>
+			<if test="newCid != null">
+				AND cid = #{newCid}
+			</if>
+			<if test="keyword != null">
+				AND pname LIKE '%' || #{keyword} || '%'
+				<!-- concat은 괄호 안의 텍스트들을 합쳐 하나로 만들어줌. 그냥 %#{pname}% 사용시 매핑되지 않고 저 텍스트가 
+					그대로 인식됨 -->
+			</if>
+		</where>
+	</select>
+
+	<select id="list" parameterType="Category" resultType="Product">
+		SELECT * FROM (
+		SELECT rownum rnum, a.*
+		FROM (
+		SELECT * FROM product
+		<where>
+			<if test="newCid != null">
+				AND cid = #{newCid}
+			</if>
+			<if test="keyword != null">
+				AND pname LIKE '%' || #{keyword} || '%'
+			</if>
+		</where>
+		ORDER BY preg DESC
+		) a
+		)
+		WHERE rnum BETWEEN #{newStartRow} AND #{newEndRow}
+	</select>
+	
+	<!-- 모든 카테고리 구하기 -->
+ 	<select id="selectCategory" resultType="string">
+ 	select cid from category
+ 	</select>
+ 	
+ 	<!-- 카테고리 별 대표 상품 이미지 -->
+ 	<select id="sampleProduct" parameterType="string" resultType="product">
+		select * from 
+		(select * from product where cid=#{cid} order by preg desc) 
+		where rownum=1
+	</select>
+
+</mapper>

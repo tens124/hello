@@ -81,7 +81,7 @@
 				alert("검색어를 입력해주세요");
 				return false; //alert창이 꺼지고, 아무것도 하지 않음
 			}
-			location.href = "allSearch.do?keyword=" + s; //요청을 전송. allSearch.do 요청에 keyword값을 태워 보냄
+			location.href = "product.do?keyword=" + s; //요청을 전송. product.do 요청에 keyword값을 태워 보냄
 		}
 	}
 </script>
@@ -241,11 +241,13 @@
 		<nav id="menu">
 			<h2>Menu</h2>
 			<ul>
-				<li><a href="category.do" style="text-decoration: none">카테고리</a></li>
+				<li><a href="product.do" style="text-decoration: none">카테고리</a></li>
 				<br>
 				<li><a href="freeBoardList.do" style="text-decoration: none">커뮤니티</a></li>
 				<br>
 				<li><a href="masterNotice.do" style="text-decoration: none">공지사항</a></li>
+				<br>
+				<li><a href="product.do" style="text-decoration: none">실험</a></li>
 				<br>
 			</ul>
 		</nav>
@@ -392,7 +394,7 @@
 		<cation>Menu</cation>
 		>
 		<ul>
-			<li><a href="category.do" style="text-decoration: none">카테고리</a></li>
+			<li><a href="product.do" style="text-decoration: none">카테고리</a></li>
 			<br>
 			<li><a href="freeBoardList.do" style="text-decoration: none">커뮤니티</a></li>
 			<br>

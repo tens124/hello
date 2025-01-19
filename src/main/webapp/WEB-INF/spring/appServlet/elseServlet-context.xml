@@ -28,4 +28,6 @@
 		</interceptor>
 	</interceptors>
 
+	<context:property-placeholder location="classpath:properties/oauth.properties" />
+
 </beans:beans>

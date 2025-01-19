@@ -12,13 +12,13 @@ import boss.common.PagePgm;
 import boss.model.Product;
 import boss.service.SearchService;
 
-@Controller
+//@Controller
 public class SearchController {
 
 	@Autowired
 	SearchService ss;
 
-	@RequestMapping("allSearch.do")
+	//@RequestMapping("product.do")
 	public String allSearch(PagePgm pp, 
 			@RequestParam(value = "nowPage", required = false) String nowPage,
 			@RequestParam(value = "cntPerPage", required = false) String cntPerPage, Model model) {

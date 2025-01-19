@@ -69,17 +69,17 @@ public class MasterProductController {
     */
    @RequestMapping("masterProductList.do")
    public String masterProductList(PagePgm page, Model model, String type, String img,String block,
-         @RequestParam(value = "nowPage", required = false) String nowPage,
-         @RequestParam(value = "cntPerPage", required = false) String cntPerPage) {
+         @RequestParam(value = "nowPage", required = false, defaultValue ="1") String nowPage,
+         @RequestParam(value = "cntPerPage", required = false, defaultValue ="5") String cntPerPage) {
 
-      if (nowPage == null && cntPerPage == null) {
-         nowPage = "1";
-         cntPerPage = "5";
-      } else if (nowPage == null) {
-         nowPage = "1";
-      } else if (cntPerPage == null) {
-         cntPerPage = "5";
-      }
+//      if (nowPage == null && cntPerPage == null) {
+//         nowPage = "1";
+//         cntPerPage = "5";
+//      } else if (nowPage == null) {
+//         nowPage = "1";
+//      } else if (cntPerPage == null) {
+//         cntPerPage = "5";
+//      }
 
       // 총상품 갯수
       int totalCount = service.totalCount();

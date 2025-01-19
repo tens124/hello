@@ -17,13 +17,22 @@ public class PagePgm extends Search {
 	}
 
 	public PagePgm(int total, int nowPage, int cntPerPage) {
-		setNowPage(nowPage);
 		setCntPerPage(cntPerPage);
 		setTotal(total);
 
 		calcLastPage(getTotal(), getCntPerPage());
+		
+		//마지막 페이지가 현재 페이지보다 작을 경우, 자동으로 마지막 페이지로 설정해주는 코드 추가
+		if(nowPage>lastPage) {
+			setNowPage(lastPage);
+		}else {
+			setNowPage(nowPage);
+		}
+		
 		calcStartEndPage(getNowPage(), cntPage);
 		calcStartEnd(getNowPage(), getCntPerPage());
+		
+		System.out.println("진짜현재페이지:"+getNowPage());
 	}
 	
 	//검색용 생성자

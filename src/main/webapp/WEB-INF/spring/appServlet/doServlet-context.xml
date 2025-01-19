@@ -60,5 +60,7 @@
 	
 	<!-- 디스패쳐 서블릿은 요청을 받아 컨트롤러로 넘겨주는 역할! 따라서 컨트롤러 빈만큼은 디스패쳐 서블릿에서 관리해야 함 -->
 	<context:component-scan base-package="boss.controller" />
+	
+	<context:property-placeholder location="classpath:properties/oauth.properties" />
 
 </beans:beans>

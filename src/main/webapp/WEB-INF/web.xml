@@ -109,6 +109,7 @@
 	<resources mapping="/fonts/**" location="/fonts/" />
 	
 	<!-- 네이버 인증 API에 사용되는 정보가 저장되어 있음 -->
+	<!-- 해당 설정은 서블릿 컨텍스트에 두는 게 @Value 어노테이션 작동 시 정상적으로 작동! -->
 	<context:property-placeholder location="classpath:properties/oauth.properties" />
 
 </web-app>

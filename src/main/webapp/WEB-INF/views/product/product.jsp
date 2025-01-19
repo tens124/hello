@@ -24,32 +24,50 @@
 		if (window.event.keyCode == 13) {
 			// 엔터키가 눌렸을 때
 			var s = document.getElementById("search").value;
-			if(s == ""){
+			if (s == "") {
 				alert("검색어를 입력해주세요");
-	            return false;
+				return false;
 			}
-			location.href = "categorySearch.do?newCid=${category.newCid}&keyword="
-					+ s;
+			location.href = "product.do?newCid=${category.newCid}&keyword=" + s;
 		}
 	}
+
+	function allSearch() {
+		if (window.event.keyCode == 13) {
+			// 엔터키가 눌렸을 때
+			var s = document.getElementById("search").value;
+			if (s == "") {
+				alert("검색어를 입력해주세요");
+				return false;
+			}
+			location.href = "product.do?keyword=" + s;
+		}
+	}
+
 	function selChange() {
 
 		var sel = document.getElementById('cntPerPage').value;
-		location.href = "category.do?nowPage=${pp.nowPage}&newCid=${category.newCid}&cntPerPage="
+		location.href = "product.do?keyword=${category.keyword}&nowPage=${pp.nowPage}&newCid=${category.newCid}&cntPerPage="
+				+ sel;
+	}
+	function selChange2() {
+
+		var sel = document.getElementById('cntPerPage').value;
+		location.href = "product.do?keyword=${category.keyword}&nowPage=${pp.nowPage}&cntPerPage="
 				+ sel;
 	}
 </script>
 
 <style type="text/css">
- .center-div {
-      text-align: center;
-    }
-    </style>
+.center-div {
+	text-align: center;
+}
+</style>
 </head>
 
 
 
-	<%@include file="/WEB-INF/views/common/chatbot.jsp"%>
+<%@include file="/WEB-INF/views/common/chatbot.jsp"%>
 <body class="is-preload">
 
 	<!-- Wrapper -->
@@ -63,15 +81,38 @@
 				<%@include file="../common/header.jsp"%>
 
 				<!--1. 회원 or 비회원 페이지 -->
-					<%@include file="../common/list.jsp"%>
+				<%@include file="../common/list.jsp"%>
 				<div align="center" width="30px" height="100px">
-					<input type="text" maxlength="30" placeholder="${param.newCid } 검색"
-						id="search" onkeyup="enterkey()">
+					<c:if test="${not empty category.newCid}">
+						<input type="text" maxlength="30"
+							placeholder="${category.newCid } 검색" id="search"
+							onkeyup="enterkey()">
+					</c:if>
+					<c:if test="${empty category.newCid}">
+						<input type="text" maxlength="30" placeholder="검색어를 입력하세요"
+							id="search" onkeyup="allSearch()">
+					</c:if>
 				</div>
 
-				<c:if test="${not empty list}">
+				<c:if test="${not empty list && not empty category.newCid}">
 					<div style="float: right;">
 						<select id="cntPerPage" name="sel" onchange="selChange()"
+							class="selected-five">
+							<option value="15"
+								<c:if test="${pp.cntPerPage == 15}">selected</c:if>>15개
+								보기</option>
+							<option value="30"
+								<c:if test="${pp.cntPerPage == 30}">selected</c:if>>30개
+								보기</option>
+							<option value="45"
+								<c:if test="${pp.cntPerPage == 45}">selected</c:if>>45개
+								보기</option>
+						</select>
+					</div>
+				</c:if>
+				<c:if test="${not empty list && empty category.newCid}">
+					<div style="float: right;">
+						<select id="cntPerPage" name="sel" onchange="selChange2()"
 							class="selected-five">
 							<option value="15"
 								<c:if test="${pp.cntPerPage == 15}">selected</c:if>>15개
@@ -88,19 +129,18 @@
 				<br>
 
 				<!---------------------- Nav --------------------->
-					<nav>
-						<ul>
-							<li><a href="#menu">Menu</a></li>
-						</ul>
-					</nav>
+				<nav>
+					<ul>
+						<li><a href="#menu">Menu</a></li>
+					</ul>
+				</nav>
 			</div>
 		</header>
 		<!-- Menu -->
 		<nav id="menu">
 			<h2>Menu</h2>
 			<ul>
-				<li><a href="category.do"
-					style="text-decoration: none">카테고리</a></li>
+				<li><a href="product.do" style="text-decoration: none">카테고리</a></li>
 				<br>
 				<li><a href="freeBoardList.do" style="text-decoration: none">커뮤니티</a></li>
 				<br>
@@ -114,17 +154,18 @@
 		<div id="main">
 			<div class="inner">
 				<header align="left">
-
-					<h1>${category.newCid}</h1>
+					<c:if test="${not empty category.newCid}">
+						<h1>${category.newCid}</h1>
+					</c:if>
 				</header>
 
 				<c:if test="${not empty list}">
+					<!-- if문을 넣어 해당 카테고리의 상품이 없을 경우 화면 중앙에 '등록된 상품이 없습니다' 출력 -->
 					<section class="tiles">
-						<!-- if문을 넣어 해당 카테고리의 상품이 없을 경우 화면 중앙에 '등록된 상품이 없습니다' 출력 -->
 						<c:forEach var="L" items="${list }" varStatus="loop">
 							<article class="style1">
-								<span class="image"> <img src="images/${L.pimage}"
-								alt="" height="450"> 
+								<span class="image"> <img src="images/${L.pimage}" alt=""
+									height="450">
 								</span> <a href="productDetail.do?pid=${L.pid }">
 									<h2>${L.pname }</h2>
 									<div class="content">
@@ -138,7 +179,9 @@
 				</c:if>
 
 				<c:if test="${empty list}">
-					<br><br><br>
+					<br>
+					<br>
+					<br>
 					<div class="center-div">
 						<h1>등록된 상품이 없습니다</h1>
 					</div>
@@ -148,27 +191,54 @@
 			</div>
 			<!-- 다른 페이지로 넘어가기 위한 숫자들 자리 -->
 			<div align="center">
-				<c:if test="${pp.startPage != 1 }">
-					<a style="text-decoration: none; color: deeppink"
-						href="./category.do?newCid=${cid }&nowPage=${pp.startPage - 1 }&cntPerPage=${pp.cntPerPage}">
-						<- </a>
+
+				<c:if test="${not empty category.newCid }">
+					<c:if test="${pp.startPage != 1 }">
+						<a style="text-decoration: none; color: deeppink"
+							href="./product.do?newCid=${category.newCid }&keyword=${category.keyword }&nowPage=${pp.startPage - 1 }&cntPerPage=${pp.cntPerPage}">
+							<- </a>
+					</c:if>
+					<c:forEach begin="${pp.startPage }" end="${pp.endPage }" var="p">
+						<c:choose>
+							<c:when test="${p == pp.nowPage }">
+								<b>${p }</b>
+							</c:when>
+							<c:when test="${p != pp.nowPage }">
+								<a style="text-decoration: none; color: deeppink"
+									href="./product.do?newCid=${category.newCid }&keyword=${category.keyword }&nowPage=${p }&cntPerPage=${pp.cntPerPage}">${p }</a>
+							</c:when>
+						</c:choose>
+					</c:forEach>
+					<c:if test="${pp.endPage != pp.lastPage}">
+						<a style="text-decoration: none; color: deeppink"
+							href="./product.do?newCid=${category.newCid }&keyword=${category.keyword }&nowPage=${pp.endPage+1 }&cntPerPage=${pp.cntPerPage}">
+							-> </a>
+					</c:if>
 				</c:if>
-				<c:forEach begin="${pp.startPage }" end="${pp.endPage }" var="p">
-					<c:choose>
-						<c:when test="${p == pp.nowPage }">
-							<b>${p }</b>
-						</c:when>
-						<c:when test="${p != pp.nowPage }">
-							<a style="text-decoration: none; color: deeppink"
-								href="./category.do?newCid=${cid }&nowPage=${p }&cntPerPage=${pp.cntPerPage}">${p }</a>
-						</c:when>
-					</c:choose>
-				</c:forEach>
-				<c:if test="${pp.endPage != pp.lastPage}">
-					<a style="text-decoration: none; color: deeppink"
-						href="./category.do?newCid=${cid }&nowPage=${pp.endPage+1 }&cntPerPage=${pp.cntPerPage}">
-						-> </a>
+				<c:if test="${empty category.newCid }">
+					<c:if test="${pp.startPage != 1 }">
+						<a style="text-decoration: none; color: deeppink"
+							href="./product.do?keyword=${category.keyword }&nowPage=${pp.startPage - 1 }&cntPerPage=${pp.cntPerPage}">
+							<- </a>
+					</c:if>
+					<c:forEach begin="${pp.startPage }" end="${pp.endPage }" var="p">
+						<c:choose>
+							<c:when test="${p == pp.nowPage }">
+								<b>${p }</b>
+							</c:when>
+							<c:when test="${p != pp.nowPage }">
+								<a style="text-decoration: none; color: deeppink"
+									href="./product.do?keyword=${category.keyword }&nowPage=${p }&cntPerPage=${pp.cntPerPage}">${p }</a>
+							</c:when>
+						</c:choose>
+					</c:forEach>
+					<c:if test="${pp.endPage != pp.lastPage}">
+						<a style="text-decoration: none; color: deeppink"
+							href="./product.do?keyword=${category.keyword }&nowPage=${pp.endPage+1 }&cntPerPage=${pp.cntPerPage}">
+							-> </a>
+					</c:if>
 				</c:if>
+
 			</div>
 
 		</div>

@@ -237,7 +237,7 @@ body #searchtype select {
 		<nav id="menu">
 			<h2>Menu</h2>
 			<ul>
-				<li><a href="category.do" style="text-decoration: none">카테고리</a></li>
+				<li><a href="product.do" style="text-decoration: none">카테고리</a></li>
 				<br>
 				<li><a href="freeBoardList.do" style="text-decoration: none">커뮤니티</a></li>
 				<br>

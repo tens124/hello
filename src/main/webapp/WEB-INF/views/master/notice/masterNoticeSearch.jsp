@@ -207,19 +207,19 @@ body #searchtype select {
 
 				<!--1. 회원 or 비회원 페이지 -->
 				<div class="category-link" align="center">
-					<a href="category.do?newCid=코트"
+					<a href="product.do?newCid=코트"
 						style="font-size: 20px; font-weight: bold; margin-right: 10px; text-decoration: none;">OUTER</a>
-					<a href="category.do?newCid=코트"
+					<a href="product.do?newCid=코트"
 						style="font-size: 20px; font-weight: bold; margin-right: 10px; text-decoration: none">KNIT</a>
-					<a href="category.do?newCid=상의"
+					<a href="product.do?newCid=상의"
 						style="font-size: 20px; font-weight: bold; margin-right: 10px; text-decoration: none">TOP</a>
-					<a href="category.do?newCid=하의"
+					<a href="product.do?newCid=하의"
 						style="font-size: 20px; font-weight: bold; margin-right: 10px; text-decoration: none">BOTTOM</a>
-					<a href="category.do?newCid=코트"
+					<a href="product.do?newCid=코트"
 						style="font-size: 20px; font-weight: bold; margin-right: 10px; text-decoration: none">SHIRT</a>
-					<a href="category.do?newCid=코트"
+					<a href="product.do?newCid=코트"
 						style="font-size: 20px; font-weight: bold; margin-right: 10px; text-decoration: none">SHOES</a>
-					<a href="category.do?newCid=코트"
+					<a href="product.do?newCid=코트"
 						style="font-size: 20px; font-weight: bold; margin-right: 10px; text-decoration: none">ACC</a>
 				</div>
 				<br>
@@ -236,7 +236,7 @@ body #searchtype select {
 		<nav id="menu">
 			<h2>Menu</h2>
 			<ul>
-				<li><a href="category.do"
+				<li><a href="product.do"
 					style="text-decoration: none">카테고리</a></li>
 				<br>
 				<li><a href="freeBoardList.do" style="text-decoration: none">커뮤니티</a></li>

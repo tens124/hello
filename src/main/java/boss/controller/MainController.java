@@ -22,12 +22,16 @@ import boss.common.Pinecone;
 import boss.model.MainImage;
 import boss.model.Product;
 import boss.service.MasterProductService;
+import boss.service.ProductService;
 
 @Controller
 public class MainController {
 
 	@Autowired
 	private MasterProductService service;
+	
+	@Autowired
+	ProductService ps;
 	
 	
 	//메인 페이지 이동 메소드. main.do라는 요청이 발생되면 이 메소드가 호출됨
@@ -44,17 +48,7 @@ public class MainController {
 		// 초기값 뿌려줌
 		//mainImageList 맵은 이름과 DB데이터를 함께 보관하는 듯?
 		//mainImageList_db 리스트에는 select문을 통해 db에서 가져온 사진들이 저장됨
-		Map<String, MainImage> mainImageList = new HashMap<String, MainImage>();	//메인에 표시될 상품리스트
 		List<MainImage> mainImageList_db = service.selectMainProductList();		//db에서 메인이미지 테이블에 존재하는 상품을 전부 가져옴. 1~9 순서대로!
-
-		// by hyesun
-//		Collections.sort(mainImageList_db, new Comparator<MainImage>() {
-//            @Override
-//            public int compare(MainImage o1, MainImage o2) {
-//                return o2.getPid() - o1.getPid();	//pid 기준으로 내림차순 정렬되게 함
-//            }
-//        });
-		// by hyesun end
 
 //		if (mainImageList_db.size() > 0) { // DB 검색 결과 1개라도 구해옴.
 //			for (int i = 0; i < mainImageList_db.size(); i++) { // list size만큼 put
@@ -69,7 +63,6 @@ public class MainController {
 //		}
 		
 		model.addAttribute("main", mainImageList_db);
-		
 		
 		//뷰 페이지의 상품 출력 방법. 
 //		<span class="image"> 

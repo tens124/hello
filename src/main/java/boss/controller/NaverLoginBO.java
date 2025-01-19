@@ -9,6 +9,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
 
@@ -21,6 +22,8 @@ import com.github.scribejava.core.oauth.OAuth20Service;
 
 //빈으로 등록해야 @Value 어노테이션을 통한 값 읽어오기가 가능!
 @Component
+//@PropertySource("classpath:properties/oauth.properties")	//properties 파일이 어디 있는지 경로를 직접적으로 지정하는 어노테이션
+															//web파일에 context:property-placeholder를 설정하는 것과는 어떤 차이가 있을까?
 public class NaverLoginBO {
 
 	/* 인증 요청문을 구성하는 파라미터 */
@@ -69,6 +72,8 @@ public class NaverLoginBO {
 				.callback(uri)							//callback(redirect_uri 변수) 세팅
 				.state(state) 									// 앞서 생성한 난수값을 인증 URL생성시 사용. state(state 변수) 세팅
 				.build(naver);				//네이버 아이디 로그인에 적합한 객체로 변환. 매개변수로는 늘 같은 값을 참조할 수 있는, default20을 상속한 객체를 포함시켜야 함. 싱글톤 등
+		
+		System.out.println(id);
 		
 		//oauthService 객체를 공유할 수 있도록 만들어두면 코드 축약에 도움이 될 것
 		return oauthService.getAuthorizationUrl();
