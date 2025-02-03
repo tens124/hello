@@ -40,6 +40,8 @@
                <div class="email_auth">
                   <input type="text" placeholder="이메일 (Naver 이메일만 가능)" name="mEmail" id="mEmail" class="email">
                   <button type="button" id="email_auth_btn" class="email_auth_btn">인증번호 받기</button>
+                  <!-- email_auth_btn 버튼 클릭 시 join.js 파일의 (".email_auth_btn").click(function () 함수 실행
+                  email의 형식 검사 후 ajax 실행. post 형식의 dbCheckEmail.do 요청 전송. 해당 컨트롤러는 N 혹은 Y를 반환 -->
                </div>
                
                <input type="text" placeholder="인증번호 입력" id="email_auth_key">

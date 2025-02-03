@@ -10,15 +10,16 @@
 <title>회원탈퇴</title>
  
 <script>
-		function deleteconfirm(mEmail, mPwd) {
+		function deleteconfirm(mEmail) {
 			var deleteConfirm = confirm("진짜 탈퇴 하시겠습니까?");
+			var password = $('#mPwd').val();
 			if (deleteConfirm) {
 				$.ajax({
 					type : "POST",
 					url : "deleteMember.do",
 					data : {
 						mEmail : mEmail,
-						mPwd : mPwd
+						mPwd : password
 					},
 					success : function(response) {
 						if (response === "Y") {
@@ -55,7 +56,7 @@
 						<input type="password" placeholder="비밀번호" name="mPwd" id="mPwd">
 
 						<button type="button" id="join" class="join_btn"
-							onclick="deleteconfirm('${member.mEmail}','${member.mPwd}')">탈퇴
+							onclick="deleteconfirm('${member.mEmail}')">탈퇴
 							하기</button>
 				</form>
 			</div>

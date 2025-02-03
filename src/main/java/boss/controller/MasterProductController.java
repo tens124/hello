@@ -183,7 +183,7 @@ public class MasterProductController {
       System.out.println("여기는?");
 
       // 상품 등록
-      result = service.productInsert(product);
+      result = service.productInsert(product);	//현재 이 부분에서 타임아웃 발생 중. sql문이 작동하지 않는다. 이외의 파일 업로드 등 나머지는 전부 제대로 실행됨
       System.out.println("여기는22?");
       int amount = Integer.parseInt(acount);
 
@@ -344,15 +344,15 @@ public class MasterProductController {
          }
          // by hyesun start
          // vector store에 id에 해당하는 embedding 삭제
-         Pinecone vecStore = Pinecone.getInstance();
-         if (id != null) {
-        	 vecStore.delete(Integer.valueOf(id));
-         } else if (id == null && ids != null) {
-        	 idList = Arrays.asList(ids);
-        	 idList.forEach((String _id) -> 
-        	 	vecStore.delete(Integer.valueOf(_id))
-        	 );
-         }
+//         Pinecone vecStore = Pinecone.getInstance();
+//         if (id != null) {
+//        	 vecStore.delete(Integer.valueOf(id));
+//         } else if (id == null && ids != null) {
+//        	 idList = Arrays.asList(ids);
+//        	 idList.forEach((String _id) -> 
+//        	 	vecStore.delete(Integer.valueOf(_id))
+//        	 );
+//         }
          // by hyesun end
          
       } else { // 모든값이 Null이라면.

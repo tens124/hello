@@ -13,7 +13,7 @@
 	</insert>
 	
 	<!-- 네이버 회원 가입 -->
-	<insert id="insertNMember" parameterType="java.util.Map">
+	<insert id="insertNMember" parameterType="member">
 		INSERT INTO MEMBER (mEmail, mPwd, mName, mPhone, mGrade, mReg, mDrop)
  	   VALUES (#{mEmail,jdbcType=VARCHAR}, #{mPwd}, #{mName}, #{mPhone}, default, sysdate, default)
 	</insert>

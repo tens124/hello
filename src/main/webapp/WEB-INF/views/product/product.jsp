@@ -20,6 +20,9 @@
 
 
 <script>
+	//카테고리와 검색어 중 하나라도 잘못 전달되면(비어있으면) sql문이 제대로 작동하지 않음... 해결한다면 전부 하나로 통합할 수 있을텐데
+
+	//카테고리 검색용
 	function enterkey() {
 		if (window.event.keyCode == 13) {
 			// 엔터키가 눌렸을 때
@@ -32,24 +35,30 @@
 		}
 	}
 
+	//전체 검색용
 	function allSearch() {
 		if (window.event.keyCode == 13) {
 			// 엔터키가 눌렸을 때
 			var s = document.getElementById("search").value;
+			var sel = document.getElementById('cntPerPage').value;
 			if (s == "") {
 				alert("검색어를 입력해주세요");
 				return false;
 			}
-			location.href = "product.do?keyword=" + s;
+			location.href = "product.do?keyword=" + s + "&cntPerPage="
+			+ sel;
 		}
 	}
 
+	//특정 카테고리 리스트용
 	function selChange() {
 
 		var sel = document.getElementById('cntPerPage').value;
 		location.href = "product.do?keyword=${category.keyword}&nowPage=${pp.nowPage}&newCid=${category.newCid}&cntPerPage="
 				+ sel;
 	}
+	
+	//전체 상품 리스트용
 	function selChange2() {
 
 		var sel = document.getElementById('cntPerPage').value;

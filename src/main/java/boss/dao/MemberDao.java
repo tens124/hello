@@ -27,7 +27,7 @@ public interface MemberDao {
 	public Member selectOne(String mEmail);
 	
 	// 네이버 회원 가입
-	public int insertNMember(Map<String, Object> map);
+	public int insertNMember(Member member);
 	
 	// 회원 정보 수정
 	public int updateMember(Member member);

@@ -47,10 +47,8 @@ public class MypageController {
 	public String doMypage(HttpSession session, Model model) {
 		System.out.println("마이 페이지 이동");
 
-		Member member = (Member) session.getAttribute("member");
+		List<Orders> orders = service.myoders(session); // 내 주문내역 구해오기 -> 문제 list 로 받아와야함
 
-		List<Orders> orders = service.myoders(member.getmEmail()); // 내 주문내역 구해오기 -> 문제 list 로 받아와야함
-		int totalcount = 0;
 		// 주문 한 내역이 있다면
 		if (orders != null) {      // 주문번호가 있다면.
 	        model.addAttribute("orders", orders);

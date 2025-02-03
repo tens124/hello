@@ -17,10 +17,27 @@
 	<bean id="hikariConfig" class="com.zaxxer.hikari.HikariConfig">
 		<property name="driverClassName"
 			value="oracle.jdbc.driver.OracleDriver"></property>
+
+		<!-- local 연결 -->
+		<!-- <property name="jdbcUrl" value="jdbc:oracle:thin:@localhost:1521:xe"> 
+			</property> <property name="username" value="boss"></property> <property 
+			name="password" value="boss123"></property> -->
+
+		<!-- aws용 연결 -->
 		<property name="jdbcUrl"
-			value="jdbc:oracle:thin:@localhost:1521:xe"></property>
-		<property name="username" value="boss"></property>
-		<property name="password" value="boss123"></property>
+			value="jdbc:oracle:thin:@3.146.169.56:1521:xe">
+		</property>
+		<property name="username" value="newboss"></property>
+		<property name="password" value="zxzx33"></property>
+
+		<!-- 타임존 설정 추가. aws 서버의 기본 타임존이 UTC이기 때문 -->
+		<property name="dataSourceProperties">
+			<props>
+				<!-- 타임존을 UTC로 설정 -->
+				<prop key="oracle.jdbc.timezoneAsRegion">false</prop>
+				<prop key="oracle.jdbc.defaultTimeZone">UTC</prop>
+			</props>
+		</property>
 	</bean>
 
 	<!-- HikariCP configuration -->
@@ -48,16 +65,15 @@
 		<property name="host" value="smtp.naver.com" /> <!-- 메이서버 호스트 -->
 		<property name="port" value="587" /> <!-- 메이서버 포트번호 -->
 		<property name="username" value="holol124@naver.com" /> <!-- 자신의 이메일 아이디 -->
-		<property name="password" value="zxzx33" /> <!-- 자신의 비밀번호 -->
+		<property name="password" value="8GX81QF6XDXB" /> <!-- 자신의 비밀번호 -->
 		<!-- 보안연결 SSL과 관련된 설정 -->
 		<property name="javaMailProperties">
 			<props>
 				<prop key="mail.smtp.auth">true</prop>
 				<prop key="mail.smtp.starttls.enable">true</prop>
 				<prop key="mail.smtps.checkserveridentity">true</prop>
-				<prop key="mail.smtps.ssl.trust">*</prop>
 				<prop key="mail.debug">true</prop>
-				<prop key="mail.smtp.socketFactory.class">javax.net.ssl.SSLSocketFactory</prop>
+				<prop key="mail.smtp.ssl.trust">smtp.naver.com</prop> <!-- 트러스트 호스트 설정 -->
 			</props>
 		</property>
 	</bean>
@@ -87,6 +103,12 @@
 	<!-- <bean id="session" class="org.mybatis.spring.SqlSessionTemplate"> <constructor-arg 
 		index="0" ref="sqlSessionFactory" /> </bean> -->
 
+	<!-- 랜덤 클래스를 빈으로 등록하여 사용 -->
+	<bean id="random" class="java.util.Random"></bean>
+
+	
+
+
 
 	<!-- mapper interface의 package설정. 해당 패키지 내부에는 dao 인터페이스들이 저장되어 있어, 스프링이 
 		자동으로 스캔 후 해당 인터페이스의 구현클래스들을 자동으로 컨테이너에 등록 -->
@@ -101,6 +123,6 @@
 		<context:exclude-filter type="annotation"
 			expression="org.springframework.stereotype.Controller" />
 	</context:component-scan>
-	
+
 
 </beans>

@@ -5,6 +5,7 @@ import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.TimeZone;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Required;
@@ -43,7 +44,7 @@ public class MainController {
 	//block은 메인에 걸릴 대표상품들을 위한 변수!
 			throws Exception {
 		
-		
+		System.out.println(TimeZone.getDefault().getID());
 		//MainImage는 DTO
 		// 초기값 뿌려줌
 		//mainImageList 맵은 이름과 DB데이터를 함께 보관하는 듯?

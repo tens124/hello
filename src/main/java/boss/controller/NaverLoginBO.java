@@ -21,9 +21,10 @@ import com.github.scribejava.core.model.Verb;
 import com.github.scribejava.core.oauth.OAuth20Service;
 
 //빈으로 등록해야 @Value 어노테이션을 통한 값 읽어오기가 가능!
-@Component
-//@PropertySource("classpath:properties/oauth.properties")	//properties 파일이 어디 있는지 경로를 직접적으로 지정하는 어노테이션
+@PropertySource("classpath:properties/oauth.properties")	//properties 파일이 어디 있는지 경로를 직접적으로 지정하는 어노테이션
 															//web파일에 context:property-placeholder를 설정하는 것과는 어떤 차이가 있을까?
+															//@component만 단독으로 사용할 수 있는 방법을 찾아봅시다. 지금은 혼자 두면 @value가 제대로 작동하지 않음
+@Component
 public class NaverLoginBO {
 
 	/* 인증 요청문을 구성하는 파라미터 */

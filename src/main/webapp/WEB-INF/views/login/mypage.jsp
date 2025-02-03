@@ -23,15 +23,15 @@
 
 	<%@ include file="/WEB-INF/views/common/header.jsp"%>
 	<!-- 세션이 없을때 마이페이지 -->
-	<c:if test="${member == null }">
+	<%-- <c:if test="${member == null }">
 		<script>
 			alert("로그인이 되어 있지 않습니다.");
 			location.href = "NaverLogin.do";
 		</script>
-	</c:if>
+	</c:if> --%>
 
 
-	<!-- 세션이 있을때 마이페이지 -->
+	<!-- 세션이 있을때 마이페이지. 굳이 if문이 필요할까? 현재 .else와 새로운 인터셉트로 세션이 없는 경우는 전부 체크 중 -->
 	<c:if test="${member != null }">
 		<ul>
 			<li><a class="mypage_sidebar" href='#'>메뉴</a></li>

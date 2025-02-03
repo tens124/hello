@@ -30,11 +30,11 @@
 <div id="container" class="container">
    <div class="content">
       <div class="update_wrap">
-         <form id="join_frm" action="updateMember.do" method = "post">
+         <form id="join_frm" action="updateMember.else" method = "post">
          
             <div class="join_title">회원 수정</div>
             
-            <div class="join_box" action = "updateMember.do">
+            <div class="join_box" action = "updateMember.else">
                
                <div class="email_auth">
                   <input type="text" placeholder="이메일 (Naver 이메일만 가능)" name="mEmail" id="mEmail" class="email" value="${member.mEmail }" readonly="readonly">

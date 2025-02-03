@@ -13,7 +13,7 @@ import com.github.scribejava.core.builder.api.DefaultApi20;
 //NaverLoginApi는 현재 파일. 즉 현재 파일은 네이버 로그인 API에 필요한 요소들을 구현해 둔 것
 //DefaultApi20 클래스를 확장하여 네이버 API와의 OAuth 2.0 통신을 위한 구체적인 설정을 제공하고 있다
 
-@Component
+@Component		//스프링 빈은 전부 싱글톤이다. 즉 빈으로 등록하기만 하면 싱글톤 패턴을 일일이 적용시키지 않아도 됨
 public class NaverLoginApi extends DefaultApi20 {
 	//이 클래스는 서비스 빌더의 builder 메소드를 통해 OAuth20 객체를 만드는 데 사용된다
 	//액세스토큰과 인증url에 사용할 늘 일정한 값을 전달하는 것이 주 목표

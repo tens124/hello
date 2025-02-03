@@ -16,6 +16,7 @@
 				<!-- concat은 괄호 안의 텍스트들을 합쳐 하나로 만들어줌. 그냥 %#{pname}% 사용시 매핑되지 않고 저 텍스트가 
 					그대로 인식됨 -->
 			</if>
+			AND pdrop='N'
 		</where>
 	</select>
 
@@ -31,6 +32,7 @@
 			<if test="keyword != null">
 				AND pname LIKE '%' || #{keyword} || '%'
 			</if>
+			AND pdrop='N'
 		</where>
 		ORDER BY preg DESC
 		) a
@@ -46,7 +48,7 @@
  	<!-- 카테고리 별 대표 상품 이미지 -->
  	<select id="sampleProduct" parameterType="string" resultType="product">
 		select * from 
-		(select * from product where cid=#{cid} order by preg desc) 
+		(select * from product where cid=#{cid} and pdrop='N' order by preg desc) 
 		where rownum=1
 	</select>
 

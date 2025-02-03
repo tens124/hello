@@ -4,11 +4,14 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import boss.dao.MypageDao;
 import boss.model.AskBoard;
+import boss.model.Member;
 import boss.model.OrderDetail;
 import boss.model.Orders;
 import boss.model.QnaBoard;
@@ -115,6 +118,12 @@ public class MypageService {
 
 	public Report oneReport(String reportid) {
 		return dao.oneReport(reportid);
+	}
+
+	public List<Orders> myoders(HttpSession session) {
+		Member member = (Member) session.getAttribute("member");
+		
+		return dao.myoders(member.getmEmail());
 	}
 
 }
