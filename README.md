@@ -1,11 +1,11 @@
 # BO$$
-중앙정보기술인재개발원 2차 프로젝트
+중앙정보기술인재개발원 1차 프로젝트
 <br><br>
 
-### 프로젝트 링크 : [BO$$](http://3.146.169.56:8081/)
+### [프로젝트 링크](http://3.146.169.56:8081/)
 
 
-### 노션 링크 : [Notion](https://github.com/user-attachments/assets/bbfa0cf4-46fc-4837-b4a1-2c48315e9fe2)
+### [노션 링크](https://github.com/user-attachments/assets/bbfa0cf4-46fc-4837-b4a1-2c48315e9fe2)
 
 
 <img width="719" alt="image" src="https://github.com/HyunBaeL/Boss/assets/151427296/82f00eb0-99d3-4e68-b2ec-c0d36db0d7e6">
