@@ -31,7 +31,9 @@ public class LoginCheckInterceptor implements HandlerInterceptor {
 		System.out.println("인터셉터!");
 
 		// 세션에 member 객체가 없다면 로그인되지 않은 상태로 간주
-		if (request.getSession().getAttribute("member") == null) {
+		if (request.getSession().getAttribute("member") == null || request.getRequestURI().replace("/boss", "")=="Logout.do") {
+			
+			System.out.println(request.getRequestURI());
 
 			// 현재 세션에 현재 페이지의 url 주소를 저장한 후 공유하는 코드. 다음 페이지에서 받아 사용할 수 있다
 			HttpSession session = request.getSession();

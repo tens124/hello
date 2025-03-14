@@ -55,64 +55,10 @@ public class FreeBoardController {
 			                         Model model) throws Exception {
 		// @ModelAttribute 을 이용해서 form에서 넘어온 값을 dto객체로 값을 받고
 		// name값이 일치되면 set메소드로 값이 저장됨
+		
+		int result = fservice.insert(board, mf, request);
+		//글 등록을 위헤선 뭘 해야 하는가?
 
-		//첨부파일 저장 (중복문제 난수발생으로 파일명 다르게함)
-		String filename = mf.getOriginalFilename();		// 첨부파일명
-		int size = (int) mf.getSize(); 	
-		// 첨부파일의 크기 (단위:Byte) getSize():long형 ->int형 자료형변환 
-
-		//배포전에 업로드한 이미지는 aws의 realpath에 직접 업로드를 시켜야함. (내폴더에만 있어서)
-		//배포후에 업로드한 이미지는 aws에 업로드되어있어서 직접 업로드 하지않아도됨.(주석처리한경로는 절대경로라서 배포후에는 불러올수없음)
-		String path = request.getRealPath("images");	//파일 실제 경로를 불러오는 데 사용
-		//String path = "C:\\Users\\haham\\Downloads\\프로젝트\\상단이미지\\bossproject\\boss\\src\\main\\webapp\\images";
-		int result=0;
-		
-//		String file[] = new String[2];
-//		file = filename.split(".");
-//		System.out.println(file.length);
-//		System.out.println("file0="+file[0]);
-//		System.out.println("file1="+file[1]);
-		
-		String newfilename = "";
-	
-	if(size > 0){	 	// 첨부파일이 전송된 경우	
-		
-		// 파일 중복문제 해결
-		//.을기준으로 파일길이만큼 파일명과 확장자를 분리 
-		String extension = filename.substring(filename.lastIndexOf("."), filename.length());
-		System.out.println("extension:"+extension);
-		
-		UUID uuid = UUID.randomUUID();//난수발생 
-		
-		newfilename = uuid.toString() + extension;
-		
-//		StringTokenizer st = new StringTokenizer(filename, ".");
-//		file[0] = st.nextToken();		// 파일명		
-//		file[1] = st.nextToken();		// 확장자	    jpg 등
-		
-		if(size > 1000000){				// 1000KB
-			result=2;  
-			model.addAttribute("result", result);
-			return "freeboard/freeBoardInsertform";
-			
-		}else if(!extension.equals(".jpg")  &&
-				 !extension.equals(".jpeg") &&
-				 !extension.equals(".gif")  &&
-				 !extension.equals(".png") ){
-			
-			result=3;
-			model.addAttribute("result", result);
-			return "freeboard/freeBoardInsertform";
-		}
-	}	
-
-	//	if(filename != ""){	 // 첨부파일이 전송된 경우	
-		if (size > 0) { 	// 첨부파일이 전송된 경우
-			mf.transferTo(new File(path + "/" + newfilename)); //실제로 첨부파일을 업로드하는 코드 
-		}
-		board.setfImage(newfilename);
-		
-		result=fservice.insert(board); // 글 insert
 		model.addAttribute("result", result);
 		return "freeboard/freeBoardInsertform";
 	}

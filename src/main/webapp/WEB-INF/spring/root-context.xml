@@ -19,25 +19,25 @@
 			value="oracle.jdbc.driver.OracleDriver"></property>
 
 		<!-- local 연결 -->
-		<!-- <property name="jdbcUrl" value="jdbc:oracle:thin:@localhost:1521:xe"> 
+		<property name="jdbcUrl" value="jdbc:oracle:thin:@localhost:1521:xe"> 
 			</property> <property name="username" value="boss"></property> <property 
-			name="password" value="boss123"></property> -->
+			name="password" value="boss123"></property> 
 
 		<!-- aws용 연결 -->
-		<property name="jdbcUrl"
+		<!-- <property name="jdbcUrl"
 			value="jdbc:oracle:thin:@3.146.169.56:1521:xe">
 		</property>
 		<property name="username" value="newboss"></property>
 		<property name="password" value="zxzx33"></property>
 
-		<!-- 타임존 설정 추가. aws 서버의 기본 타임존이 UTC이기 때문 -->
+		타임존 설정 추가. aws 서버의 기본 타임존이 UTC이기 때문
 		<property name="dataSourceProperties">
 			<props>
-				<!-- 타임존을 UTC로 설정 -->
+				타임존을 UTC로 설정
 				<prop key="oracle.jdbc.timezoneAsRegion">false</prop>
 				<prop key="oracle.jdbc.defaultTimeZone">UTC</prop>
 			</props>
-		</property>
+		</property> -->
 	</bean>
 
 	<!-- HikariCP configuration -->

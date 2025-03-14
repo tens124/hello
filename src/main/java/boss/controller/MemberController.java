@@ -1,5 +1,6 @@
 package boss.controller;
 
+import java.net.URLEncoder;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
@@ -138,7 +139,7 @@ public class MemberController {
 
 		// 세션 생성 ( 이건 건들면 안돼 )
 //		model.addAttribute("result", apiResult); 왜 있지?
-		return "<script>location.href='afterLogin.do';</script>"; // 새 요청을 발생시켜야 뷰리졸버를 거치지 않고 필터에 제대로 걸림
+		return "redirect:/afterLogin.do"; // 새 요청을 발생시켜야 뷰리졸버를 거치지 않고 필터에 제대로 걸림
 	}
 	
 	@RequestMapping(value = "saveAfterLogin.do", method = RequestMethod.POST)
@@ -151,6 +152,14 @@ public class MemberController {
 	    
 	    return ResponseEntity.ok("성공");
 	    //http 상태는 200번, 매개변수는 응답 body에 들어갈 데이터
+	}
+	
+	@RequestMapping("afterLogin.do")
+	public String afterLogin(HttpServletRequest request, HttpSession session) {
+
+		System.out.println(session.getAttribute("afterLogin"));
+
+		return "redirect:/"+session.getAttribute("afterLogin"); // 로그인 화면 전에 접속하고 있던 페이지로 리다이렉트
 	}
 
 	// 이메일 보내는 요청 ( 인증번호 )
@@ -209,8 +218,10 @@ public class MemberController {
 	// 로그아웃 세션 종료
 	@RequestMapping(value = "Logout.do")
 	public String Logout(HttpSession session) {
+		String url = (String) session.getAttribute("afterLogin");
 		session.invalidate(); // 모든 세션을 제거하지만... 싱글톤을 통해 빈을 관리하는 스프링에서도 옳은 방식인가?
-		return "redirect:/main.do";
+		
+		return "redirect:/"+url;
 	}
 
 	// 회원 탈퇴 폼 이동
@@ -228,11 +239,6 @@ public class MemberController {
 		return result;
 	}
 
-	@RequestMapping("afterLogin.do")
-	public String afterLogin(HttpServletRequest request, HttpSession session) {
-
-		System.out.println("hello");
-		return "redirect:/"+session.getAttribute("afterLogin"); // 로그인 화면 전에 접속하고 있던 페이지로 리다이렉트
-	}
+	
 
 }
