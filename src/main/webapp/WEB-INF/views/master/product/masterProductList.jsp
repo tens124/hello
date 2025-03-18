@@ -60,6 +60,7 @@
 							class="check-all-checkbox">전체선택</label></th>
 					<th>이미지</th>
 					<th>상품명</th>
+					<th>카테고리</th>
 					<th>색상</th>
 					<th>사이즈</th>
 					<th>설명</th>
@@ -79,6 +80,8 @@
 						</td>
 						<td id="${product.pid }"
 							onclick="location.href='masterProductDetail.do?id=${product.pid}' ">${product.pname}</td>
+						<td 
+							onclick="location.href='masterProductDetail.do?id=${product.pid}' ">${product.cid}</td>
 						<td
 							onclick="location.href='masterProductDetail.do?id=${product.pid}' ">${product.pcolor}</td>
 						<td
