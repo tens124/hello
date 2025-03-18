@@ -41,7 +41,7 @@
    <!-- 상품 수정 하기 -->
    <update id="updateProduct" parameterType="product">
       update product set
-      pname=#{pname},pcolor=#{pcolor},psize=#{psize},pcontent=#{pcontent},pdrop=#{pdrop}
+      pname=#{pname},cid=#{cid},pcolor=#{pcolor},psize=#{psize},pcontent=#{pcontent},pdrop=#{pdrop}
       where pid=#{pid}
    </update>
 
