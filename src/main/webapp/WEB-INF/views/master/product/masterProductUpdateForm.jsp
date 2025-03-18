@@ -35,6 +35,7 @@
 						<th>상품코드</th>
 						<th>이미지</th>
 						<th>상품명</th>
+						<th>카테고리</th>
 						<th>색상</th>
 						<th>사이즈</th>
 						<th>설명</th>
@@ -50,6 +51,15 @@
 							height="50"></td>
 						<td><input type="text" value="${product.pname}" id="pname"
 							name="pname" maxlength="10" class="phone" autofocus></td>
+						<td><select name="cid" class="putsub">
+								<option value="맨투맨" selected>맨투맨</option>
+								<option value="코트">코트</option>
+								<option value="상의">상의</option>
+								<option value="하의">하의</option>
+								<option value="벨트">벨트</option>
+								<option value="악세사리">악세사리</option>
+								<option value="양말">양말</option>
+						</select></td>
 						<td><input type="text" value="${product.pcolor}" id="pcolor"
 							name="pcolor"></td>
 						<td><input type="text" value="${product.psize}" id="psize"

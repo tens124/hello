@@ -23,6 +23,7 @@
 				<th>상품코드</th>
 				<th>이미지</th>
 				<th>상품명</th>
+				<th>카테고리</th>
 				<th>색상</th>
 				<th>사이즈</th>
 				<th>설명</th>
@@ -36,6 +37,7 @@
 				<td><img src="./images/${product.pimage }" width="100"
 					height="100"></td>
 				<td>${product.pname }</td>
+				<td>${product.cid }</td>
 				<td>${product.pcolor }</td>
 				<td>${product.psize }</td>
 				<td>${product.pcontent }</td>
