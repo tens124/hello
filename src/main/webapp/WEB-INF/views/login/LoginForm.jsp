@@ -60,9 +60,9 @@ $(document).ready(function () {
          <br> 
          
          <!-- 네이버 로그인 버튼 -->
-         <a href="${url }"> 
+         <%-- <a href="${url }"> 
             <img src="./resources/login_image/naver_login.png" width="183" height="45" alt="Naver로그인">
-         </a>
+         </a> --%>
    </div>      
    <br>
    <br>

@@ -145,17 +145,17 @@
 
 <!-- 팝업 창 -->
 <div id="popup" class="popup">
-	<div class="popup-content">
+	<!-- <div class="popup-content">
 		<span class="popup-close" onclick="closePopup()">&times;</span>
 		<p>
 			<img src="images/popup.png">
 		</p>
 		<label for="closeForToday"> 오늘 하루 그만 보기 </label> <input
 			type="checkbox" id="closeForToday">
-	</div>
+	</div> -->
 </div>
 
-<script>
+<!-- <script>
 	document.addEventListener("DOMContentLoaded", function() {
 		// 저장된 쿠키에서 "오늘 그만 보기" 상태 확인
 		const isPopupClosedToday = getPopupClosedStatus();
@@ -208,7 +208,7 @@
 		tomorrow.setDate(tomorrow.getDate() + 1);
 		return tomorrow.toUTCString();
 	}
-</script>
+</script> -->
 
 
 </head>

@@ -185,17 +185,43 @@ public class MasterProductController {
       // 상품 등록
       result = service.productInsert(product);	//현재 이 부분에서 타임아웃 발생 중. sql문이 작동하지 않는다. 이외의 파일 업로드 등 나머지는 전부 제대로 실행됨
       System.out.println("여기는22?");
-      int amount = Integer.parseInt(acount);
+      int amount = Integer.parseInt(acount);	//상품과 수량 테이블을 따로 관리 중! amount는 수량을 저장하기 위한 변수
 
       Map map = new HashMap();
 
-      Product pro = service.changeList();
-      System.out.println("pid : " + pro.getPid());
-      System.out.println("pname : " + product.getPname());
-      map.put("pname", product.getPname());
-      map.put("amount", amount);
-      map.put("pro", pro.getPid());
-
+      Product pro = service.changeList();		//최신 상품을 구해오는 쿼리문. 다만, 등록날짜가 아닌 rownum 기준. rownum은 랜덤으로 부여되기에 불안정
+      System.out.println("pid : " + pro.getPid());	//위의 쿼리문을 통해 최신 상품의 pid를 가져옴
+      System.out.println("pname : " + product.getPname());	
+      
+      map.put("pro", pro.getPid());			//rownum 기준의 최신 상품에서 pid만 따로 빼옴
+      map.put("pname", product.getPname());	//입력폼에서 전달받은 상품 데이터에서 상품명만 따로 빼옴
+      map.put("amount", amount);			//입력폼에서 전달받은 amount값 입력. product DTO에 해당 데이터가 없기에 이렇게 따로 처리
+      
+      //insert into amount values(amount_seq.nextval,#{pro},#{pname},#{amount})
+      //map을 통해 이 쿼리문이 작동! 즉, 최신 상품의 pid와, 입력받은 상품명, 입력받은 수량을 amount 테이블에 입력하는 것
+      
+      //rownum을 기반으로 사용하는 이상 절대 원하는 데이터를 얻을 수 없음
+      //차라리 시간 순으로 정렬하기 위해 수정하는 것이 훨씬 나을 것		
+      
+      //preg 값으로는 SYSDATE를 등록하는 식으로 사용 중. 해당 함수는 현재시간을 초단위까지 저장하게 해줌
+      //db에는 년월일 형식으로 출력되나, TO_CHAR(preg, 'YYYY-MM-DD HH24:MI:SS') 등, to_char 함수로 출력형식 제어 가능
+      //changeList() 함수를 변경시키자. preg 기준 최신 상품의 데이터를 가져오도록
+      
+      //사실 이 부분은 자바단에서 처리하기 보다는 상품테이블에 상품 등록시 트리거를 통해 amount 테이블에도 데이터가 자동 삽입되는 식으로 수정하면 더 나을 듯
+//      CREATE OR REPLACE TRIGGER amount_of_product
+//      AFTER INSERT ON product
+//      FOR EACH ROW
+//      BEGIN
+//          INSERT INTO amount (aid, pid, aname, acount)
+//          VALUES (amount_seq.NEXTVAL, :NEW.pid, :NEW.pname, 5);
+//      END;
+//      /
+      //다만 이 트리거는 만들 수 없다. acount 값이 5로 고정되기 때문
+      //사용자가 입력한 수량을 반영하려면 product에 해당 칼럼을 따로 설정하여 해당 값 또한 함께 전달되게 해야 함
+      //product 테이블과 amount 테이블을 분리하는 것은 올바른 설계인가?
+      
+      //수정 완료. 이제 상품을 등록한 후, 해당 상품(최신 상품)의 pid값을 가져와 map에 넣은 후 amount 테이블에 해당 상품의 수량을 등록하는 식으로 작동할 것
+      
       // 상품 등록 시 재고 수량 등록
       int amCount = service.amountInsert(map);
       System.out.println("amCount : " + amCount);

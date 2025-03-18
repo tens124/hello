@@ -61,7 +61,7 @@
       select *
       from(select *
       from
-      product order by rownum desc)
+      product order by preg desc)
       where rownum = 1
    </select>
 
