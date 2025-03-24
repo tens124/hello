@@ -3,7 +3,7 @@
 <br><br>
 
 
-### [프로젝트 상세 소개](https://chambray-soap-b8c.notion.site/a22d323663474554a55e548f9f190e9a)
+### [프로젝트 상세 설명](https://chambray-soap-b8c.notion.site/a22d323663474554a55e548f9f190e9a)
 
 <br><br><br><br>
 
