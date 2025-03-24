@@ -3,7 +3,7 @@
 <br><br>
 
 
-### [노션 링크]([https://chambray-soap-b8c.notion.site/a22d323663474554a55e548f9f190e9a])
+### [노션 링크](https://chambray-soap-b8c.notion.site/a22d323663474554a55e548f9f190e9a)
 
 
 
