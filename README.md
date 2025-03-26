@@ -21,6 +21,6 @@
 ![Image](https://github.com/user-attachments/assets/a3b6b9e9-0869-4b9d-9b7d-315e5d3f51c5)
 
 <br><br><br><br>
-<h1><카테고리 구분></h1>
+<h1><카테고리 별 정렬></h1>
   
 ![Image](https://github.com/user-attachments/assets/c066df18-62ff-4904-b005-d005a6ecdb13)
