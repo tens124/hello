@@ -5,13 +5,6 @@
 
 ### [프로젝트 상세 설명](https://chambray-soap-b8c.notion.site/a22d323663474554a55e548f9f190e9a)
 
-<br><br><br><br>
-
-![Image](https://github.com/user-attachments/assets/2eeadc89-9478-4804-aa14-26639a6d024e)
-![Image](https://github.com/user-attachments/assets/2031a6db-a55e-42a2-904b-c90a8660cccd)
-![Image](https://github.com/user-attachments/assets/1a932e92-0c6a-4987-843d-7f36b2902ab0)
-<br><br><br><br>
-
 
 <h1><전체 검색/부분 검색></h1>
   
